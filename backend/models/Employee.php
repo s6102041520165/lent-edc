@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "employee".
  *
  * @property int $id
+ * @property string|null $employee_id
  * @property string|null $firstname
  * @property string|null $lastname
  * @property string|null $line
@@ -34,9 +35,8 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lastname'], 'safe'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['firstname', 'line'], 'string', 'max' => 50],
+            [['employee_id', 'firstname', 'lastname', 'line'], 'string', 'max' => 50],
         ];
     }
 
@@ -46,15 +46,15 @@ class Employee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'รหัสอ้างอิงพนักงาน',
-            'employee_id' => 'รหัสพนักงาน',
-            'firstname' => 'ชื่อจริง',
-            'lastname' => 'นามสกุล',
-            'line' => 'สายการเดินรถ',
-            'created_at' => 'เพิ่มข้อมูลเมื่อ',
-            'created_by' => 'เพิ่มข้อมูลโดย',
-            'updated_at' => 'แก้ไขข้อมูลเมื่อ',
-            'updated_by' => 'แก้ไขข้อมูลโดย',
+            'id' => 'ID',
+            'employee_id' => 'Employee ID',
+            'firstname' => 'Firstname',
+            'lastname' => 'Lastname',
+            'line' => 'Line',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 
