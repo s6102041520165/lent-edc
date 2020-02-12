@@ -13,31 +13,53 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edc-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Html::encode($this->title)?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?=Html::a('แก้ไขข้อมูล', ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+        <?=Html::a('ลบข้อมูล', ['delete', 'id' => $model->id], [
+    'class' => 'btn btn-danger',
+    'data' => [
+        'confirm' => 'Are you sure you want to delete this item?',
+        'method' => 'post',
+    ],
+])?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'serial_no',
-            'import_date',
-            'status',
-            'created_at',
-            'created_by',
-            'updated_at',
-            'updated_by',
+    <?=DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'serial_no',
+        'import_date',
+        // status ของเครื่อง EDC
+        [
+            'attribute' => 'status',
+            'value' => function ($data) {
+                if ($data->status == 1) {
+                    return 'สามารถยืมได้';
+                } else if ($data->status == 2) {
+                    return 'เครื่องส่งซ่อม';
+                }
+            },
         ],
-    ]) ?>
+
+        // ส่วนแสดงอัพเดทแก้ไขเมื่อ
+        'created_at:datetime',
+        [
+            'attribute' => 'created_by',
+            'value' => function ($data) {
+                return $data->creator['username'];
+            },
+        ],
+        'updated_at:datetime',
+        [
+            'attribute' => 'updated_by',
+            'value' => function ($data) {
+                return $data->updator['username'];
+            },
+        ],
+    ],
+])?>
 
 </div>

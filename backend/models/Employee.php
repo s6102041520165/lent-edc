@@ -2,7 +2,10 @@
 
 namespace app\models;
 
+use common\models\User;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "employee".
@@ -47,14 +50,22 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'employee_id' => 'Employee ID',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'line' => 'Line',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'employee_id' => 'รหัสพนักงาน',
+            'firstname' => 'ชื่อจริง',
+            'lastname' => 'นามสกุล',
+            'line' => 'สายการเดินรถ',
+            'created_at' => 'เพิ่มข้อมูลเมื่อ',
+            'created_by' => 'เพิ่มข้อมูลโดย',
+            'updated_at' => 'แก้ไขข้อมูลเมื่อ',
+            'updated_by' => 'แก้ไขข้อมูลโดย',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            BlameableBehavior::className(),
         ];
     }
 
@@ -66,5 +77,20 @@ class Employee extends \yii\db\ActiveRecord
     public function getLents()
     {
         return $this->hasMany(Lent::className(), ['employee_id' => 'id']);
+    }
+
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::className(), ['id' => 'employee_id']);
+    }
+
+    public function getCreator()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    public function getUpdator()
+    {
+        return $this-> hasOne(User::className(), ['id'=> 'updated_by']);
     }
 }

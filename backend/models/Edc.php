@@ -2,7 +2,10 @@
 
 namespace app\models;
 
+use common\models\User;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "edc".
@@ -56,6 +59,14 @@ class Edc extends \yii\db\ActiveRecord
             'updated_by' => 'แก้ไขข้อมูลโดย',
         ];
     }
+    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            BlameableBehavior::className(),
+        ];
+    }
 
     /**
      * Gets query for [[Lents]].
@@ -65,5 +76,20 @@ class Edc extends \yii\db\ActiveRecord
     public function getLents()
     {
         return $this->hasMany(Lent::className(), ['edc_id' => 'id']);
+    }
+
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::className(), ['id' => 'employee_id']);
+    }
+
+    public function getCreator()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    public function getUpdator()
+    {
+        return $this-> hasOne(User::className(), ['id'=> 'updated_by']);
     }
 }
