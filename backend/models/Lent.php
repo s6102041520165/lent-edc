@@ -50,16 +50,16 @@ class Lent extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'lent_date' => 'Lent Date',
-            'employee_id' => 'Employee ID',
-            'edc_id' => 'Edc ID',
-            'status' => 'Status',
-            'return_date' => 'Return Date',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'id' => 'รหัสอ้างอิงการยืม',
+            'lent_date' => 'วันที่ยืม',
+            'employee_id' => 'พนักงาน',
+            'edc_id' => 'เครื่อง EDC',
+            'status' => 'สถานะการยืมคืน',
+            'return_date' => 'วันที่คืน',
+            'created_at' => 'เพิ่มข้อมูลเมื่อ',
+            'created_by' => 'เพิ่มข้อมูลโดย',
+            'updated_at' => 'แก้ไขข้อมูลเมื่อ',
+            'updated_by' => 'แก้ไขข้อมูลโดย',
         ];
     }
 

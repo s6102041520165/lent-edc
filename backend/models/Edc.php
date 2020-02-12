@@ -46,14 +46,14 @@ class Edc extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'รหัสอ้างอิง ID',
             'serial_no' => 'Serial No',
-            'import_date' => 'Import Date',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'import_date' => 'วัน เดือน ปี ที่ได้มา',
+            'status' => 'สภาพการใช้งาน',
+            'created_at' => 'เพิ่มข้อมูลเมื่อ',
+            'created_by' => 'เพิ่มข้อมูลโดย',
+            'updated_at' => 'แก้ไขข้อมูลเมื่อ',
+            'updated_by' => 'แก้ไขข้อมูลโดย',
         ];
     }
 
