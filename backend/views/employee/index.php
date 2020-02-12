@@ -29,11 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
-                    'firstname',
-                    'lastname',
+                    // 'id',
+                    [
+                        'label' => 'ชื่อจริง - นามสกุล',
+                        'attribute' => 'firstname',
+                        'value' => function ($data) {
+                            return $data->firstname." ".$data->lastname;
+                        }
+                    ],
                     'line',
-                    'created_at',
+                    'created_at:relativeTime',
                     //'created_by',
                     //'updated_at',
                     //'updated_by',

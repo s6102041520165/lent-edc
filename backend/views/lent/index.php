@@ -25,42 +25,42 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
 
             <?=GridView::widget([
-    'dataProvider' => $dataProvider,
-    //'filterModel' => $searchModel,
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-        'id',
-        'lent_date',
-        // ชื่อพนักงาน ยืมคืน
-        [
-            'label' => 'พนักงาน',
-            'value' => function ($data) {
-                return $data->employee['firstname']." ".$data->employee['lastname'];
-            }
-        ],
-        ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
-        // status การยืม
-        [
-            'label' => 'สถานะการยืมคืน',
-            'value' => function ($data) {
-                if($data->status==1){
-                    return 'กำลังยืม';
-                }else if($data->status==2){
-                    return 'คืนแล้ว';
-                }
-            }
-        ],
-        // 'status',
-        //'return_date',
-        //'created_at',
-        //'created_by',
-        //'updated_at',
-        //'updated_by',
+                    'id',
+                    'lent_date:date',
+                    // ชื่อพนักงาน ยืมคืน
+                    [
+                        'label' => 'พนักงาน',
+                        'value' => function ($data) {
+                            return $data->employee['firstname']." ".$data->employee['lastname'];
+                        }
+                    ],
+                    ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
+                    // status การยืม
+                    [
+                        'label' => 'สถานะการยืมคืน',
+                        'value' => function ($data) {
+                            if($data->status==1){
+                                return 'กำลังยืม';
+                            }else if($data->status==2){
+                                return 'คืนแล้ว';
+                            }
+                        }
+                    ],
+                    // 'status',
+                    //'return_date',
+                    //'created_at',
+                    //'created_by',
+                    //'updated_at',
+                    //'updated_by',
 
-        ['class' => 'yii\grid\ActionColumn'],
-    ],
-]);?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]);?>
         </div>
     </div>
 

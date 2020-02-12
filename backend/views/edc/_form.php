@@ -10,29 +10,44 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="edc-form">
+<div class="panel">
+    <div class="panel-body">
+        <?php $form = ActiveForm::begin(); ?>
+        
+        <?= $form->field($model, 'import_date')->widget(\yii\jui\DatePicker::classname(), [
+            'language' => 'th',
+            'dateFormat' => 'yyyy-MM-dd',
+            'options'=>[
+                'class' => 'form-control'
+            ]
+        ]) ?>
+        <?php //  $form->field($model, 'import_date')->textInput() ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'import_date')->textInput() ?>
 
-    <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['1'=>'ใช้งานได้','2'=>'ส่งซ่อม'],['prompt' => 'กรุณาเลือกสถานะ'])?>
 
-    <?php // $form->field($model, 'created_at')->textInput() ?>
+        <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
-    <?php // $form->field($model, 'created_by')->textInput() ?>
+        <?= $form->field($model, 'status')->dropDownList(['1'=>'ใช้งานได้','2'=>'ส่งซ่อม'],['prompt' => 'กรุณาเลือกสถานะ'])?>
 
-    <?php // $form->field($model, 'updated_at')->textInput() ?>
+        <?php // $form->field($model, 'created_at')->textInput() ?>
 
-    <?php // $form->field($model, 'updated_by')->textInput() ?>
+        <?php // $form->field($model, 'created_by')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+        <?php // $form->field($model, 'updated_at')->textInput() ?>
+
+        <?php // $form->field($model, 'updated_by')->textInput() ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
+</div>
+    
 
 </div>

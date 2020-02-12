@@ -25,41 +25,46 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ])?>
     </p>
+<div class="panel">
+    <div class="panel-body">
+        <?=DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                
+                'serial_no',
+                'import_date:date',
+                // status ของเครื่อง EDC
+                [
+                    'attribute' => 'status',
+                    'value' => function ($data) {
+                        if ($data->status == 1) {
+                            return 'สามารถยืมได้';
+                        } else if ($data->status == 2) {
+                            return 'เครื่องส่งซ่อม';
+                        }
+                    },
+                ],
 
-    <?=DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        'id',
-        'serial_no',
-        'import_date',
-        // status ของเครื่อง EDC
-        [
-            'attribute' => 'status',
-            'value' => function ($data) {
-                if ($data->status == 1) {
-                    return 'สามารถยืมได้';
-                } else if ($data->status == 2) {
-                    return 'เครื่องส่งซ่อม';
-                }
-            },
-        ],
-
-        // ส่วนแสดงอัพเดทแก้ไขเมื่อ
-        'created_at:datetime',
-        [
-            'attribute' => 'created_by',
-            'value' => function ($data) {
-                return $data->creator['username'];
-            },
-        ],
-        'updated_at:datetime',
-        [
-            'attribute' => 'updated_by',
-            'value' => function ($data) {
-                return $data->updator['username'];
-            },
-        ],
-    ],
-])?>
+                // ส่วนแสดงอัพเดทแก้ไขเมื่อ
+                'created_at:datetime',
+                [
+                    'attribute' => 'created_by',
+                    'value' => function ($data) {
+                        return $data->creator['username'];
+                    },
+                ],
+                'updated_at:datetime',
+                [
+                    'attribute' => 'updated_by',
+                    'value' => function ($data) {
+                        return $data->updator['username'];
+                    },
+                ],
+            ],
+        ])?>
+    </div>
+</div>
+    
 
 </div>

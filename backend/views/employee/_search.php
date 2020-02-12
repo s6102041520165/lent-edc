@@ -14,16 +14,19 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'firstname') ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'lastname') ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'line') ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'firstname') ?>
-
-    <?= $form->field($model, 'lastname') ?>
-
-    <?= $form->field($model, 'line') ?>
-
-    <?= $form->field($model, 'created_at') ?>
+    <?php // $form->field($model, 'created_at') ?>
 
     <?php // echo $form->field($model, 'created_by') ?>
 

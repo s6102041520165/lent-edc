@@ -54,7 +54,7 @@ class Lent extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัสอ้างอิงการยืม',
-            'lent_date' => 'วันที่ยืม',
+            'lent_date' => 'วันที่เบิก',
             'employee_id' => 'พนักงาน',
             // ['label'=>'ผู้ถือกรรมสิทธิ์,'attribute'=>'ownership.name'],
             'edc_id' => 'เครื่อง EDC',

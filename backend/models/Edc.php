@@ -59,6 +59,8 @@ class Edc extends \yii\db\ActiveRecord
             'updated_by' => 'แก้ไขข้อมูลโดย',
         ];
     }
+
+    
     
     public function behaviors()
     {

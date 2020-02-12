@@ -15,15 +15,34 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php // $form->field($model, 'id') ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'lent_date')->widget(\yii\jui\DatePicker::classname(), [
+                'language' => 'th',
+                'dateFormat' => 'yyyy-MM-dd',
+                'options'=>[
+                    'class' => 'form-control'
+                ]
+            ]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'employee_id') ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'edc_id') ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'status')->dropDownList(['1'=>'คืนเครื่องแล้ว','2'=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ'])?>
+        </div>
+    </div>
+    
 
-    <?= $form->field($model, 'lent_date') ?>
+    
 
-    <?= $form->field($model, 'employee_id') ?>
+    
 
-    <?= $form->field($model, 'edc_id') ?>
-
-    <?= $form->field($model, 'status') ?>
+    
 
     <?php // echo $form->field($model, 'return_date') ?>
 

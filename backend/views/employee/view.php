@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Employee */
 
-$this->title = $model->id;
+$this->title = $model->firstname . " " . $model->lastname;
 $this->params['breadcrumbs'][] = ['label' => 'Employees', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -25,30 +25,34 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ])?>
     </p>
-
-    <?=DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        'id',
-        'firstname',
-        'lastname',
-        'line',
-        // ส่วนแสดงอัพเดทแก้ไขเมื่อ
-        'created_at:datetime',
-        [
-            'attribute' => 'created_by',
-            'value' => function ($data) {
-                return $data->creator['username'];
-            },
-        ],
-        'updated_at:datetime',
-        [
-            'attribute' => 'updated_by',
-            'value' => function ($data) {
-                return $data->updator['username'];
-            },
-        ],
-    ],
-])?>
+    <div class="panel">
+        <div class="panel-body">
+            <?=DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'firstname',
+                    'lastname',
+                    'line',
+                    // ส่วนแสดงอัพเดทแก้ไขเมื่อ
+                    'created_at:date',
+                    [
+                        'attribute' => 'created_by',
+                        'value' => function ($data) {
+                            return $data->creator['username'];
+                        },
+                    ],
+                    'updated_at:date',
+                    [
+                        'attribute' => 'updated_by',
+                        'value' => function ($data) {
+                            return $data->updator['username'];
+                        },
+                    ],
+                ],
+            ])?>
+        </div>
+    </div>
+    
 
 </div>
