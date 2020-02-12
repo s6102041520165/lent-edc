@@ -11,33 +11,42 @@ $this->title = 'Edcs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edc-index">
+    <div class="panel">
+        <div class="panel-body">
+            <p>
+                <?= Html::a('Create Edc', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?php echo $this->render('_search', ['model' => $searchModel]);
+            ?>
+        </div>
+    </div>
 
-    <p>
-        <?= Html::a('Create Edc', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="panel">
+        <div class="panel-body">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    'id',
+                    'serial_no',
+                    'import_date',
+                    'status',
+                    'created_at',
+                    //'created_by',
+                    //'updated_at',
+                    //'updated_by',
 
-            'id',
-            'serial_no',
-            'import_date',
-            'status',
-            'created_at',
-            //'created_by',
-            //'updated_at',
-            //'updated_by',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
+</div>
+</div>
 
 
 </div>
