@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'import_date',
                     'status',
                     'created_at:relativeTime',
-                        
+
                     //'created_by',
                     //'updated_at',
                     //'updated_by',
