@@ -43,8 +43,8 @@ use yii\widgets\ActiveForm;
         ?>
         <div class="col-lg-12">
             <div class="form-group">
-                <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-                <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+                <?= Html::submitButton('ค้นหาข้อมูล', ['class' => 'btn btn-primary']) ?>
+                <?= Html::resetButton('รีเซ็ต', ['class' => 'btn btn-outline-secondary']) ?>
             </div>
         </div>
     </div>

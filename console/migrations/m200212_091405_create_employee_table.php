@@ -14,8 +14,9 @@ class m200212_091405_create_employee_table extends Migration
     {
         $this->createTable('{{%employee}}', [
             'id' => $this->primaryKey(),
+            'employee_id'=>$this->integer(),
             'firstname' => $this->string(50),
-            'lastname' => $this->date(),
+            'lastname' => $this->string(50),
             'line' => $this->string(50),
             
             'created_at' => $this->integer(),

@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\LentSearch */
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <p>
-                <?= Html::a('ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success']) ?>
+                <?=Html::a('ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success'])?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,26 +24,43 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
 
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                //'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+            <?=GridView::widget([
+    'dataProvider' => $dataProvider,
+    //'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
-                    'lent_date',
-                    'employee_id',
-                    'edc_id',
-                    'status',
-                    //'return_date',
-                    //'created_at',
-                    //'created_by',
-                    //'updated_at',
-                    //'updated_by',
+        'id',
+        'lent_date',
+        // ชื่อพนักงาน ยืมคืน
+        [
+            'label' => 'พนักงาน',
+            'value' => function ($data) {
+                return $data->employee['firstname']." ".$data->employee['lastname'];
+            }
+        ],
+        ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
+        // status การยืม
+        [
+            'label' => 'สถานะการยืมคืน',
+            'value' => function ($data) {
+                if($data->status==1){
+                    return 'กำลังยืม';
+                }else if($data->status==2){
+                    return 'คืนแล้ว';
+                }
+            }
+        ],
+        // 'status',
+        //'return_date',
+        //'created_at',
+        //'created_by',
+        //'updated_at',
+        //'updated_by',
 
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]); ?>
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]);?>
         </div>
     </div>
 
