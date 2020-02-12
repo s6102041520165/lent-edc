@@ -1,0 +1,85 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "lent".
+ *
+ * @property int $id
+ * @property string|null $lent_date
+ * @property int|null $employee_id
+ * @property int|null $edc_id
+ * @property int|null $status
+ * @property string|null $return_date
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
+ *
+ * @property Edc $edc
+ * @property Employee $employee
+ */
+class Lent extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'lent';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['lent_date', 'return_date'], 'safe'],
+            [['employee_id', 'edc_id', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['edc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Edc::className(), 'targetAttribute' => ['edc_id' => 'id']],
+            [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'lent_date' => 'Lent Date',
+            'employee_id' => 'Employee ID',
+            'edc_id' => 'Edc ID',
+            'status' => 'Status',
+            'return_date' => 'Return Date',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
+        ];
+    }
+
+    /**
+     * Gets query for [[Edc]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEdc()
+    {
+        return $this->hasOne(Edc::className(), ['id' => 'edc_id']);
+    }
+
+    /**
+     * Gets query for [[Employee]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::className(), ['id' => 'employee_id']);
+    }
+}
