@@ -11,35 +11,41 @@ $this->title = 'Lents';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lent-index">
+    <div class="panel">
+        <div class="panel-body">
+            <p>
+                <?= Html::a('ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
 
-    <p>
-        <?= Html::a('Create Lent', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="panel">
+        <div class="panel-body">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    'id',
+                    'lent_date',
+                    'employee_id',
+                    'edc_id',
+                    'status',
+                    //'return_date',
+                    //'created_at',
+                    //'created_by',
+                    //'updated_at',
+                    //'updated_by',
 
-            'id',
-            'lent_date',
-            'employee_id',
-            'edc_id',
-            'status',
-            //'return_date',
-            //'created_at',
-            //'created_by',
-            //'updated_at',
-            //'updated_by',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 
 
 </div>

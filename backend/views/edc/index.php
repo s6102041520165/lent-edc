@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <p>
-                <?= Html::a('Create Edc', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('เพิ่มข้อมูลเครื่อง EDC', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]);
