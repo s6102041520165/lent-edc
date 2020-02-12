@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,15 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'import_date')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(['1'=>'ใช้งานได้','2'=>'ส่งซ่อม'],['prompt' => 'กรุณาเลือกสถานะ'])?>
 
-    <?= $form->field($model, 'created_by')->textInput() ?>
+    <?php // $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?php // $form->field($model, 'created_by')->textInput() ?>
 
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <?php // $form->field($model, 'updated_at')->textInput() ?>
+
+    <?php // $form->field($model, 'updated_by')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
