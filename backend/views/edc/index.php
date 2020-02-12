@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'serial_no',
                     'import_date',
                     'status',
-                    'created_at',
+                    'attribute' => 'created_at:relativeTime',
+                        
                     //'created_by',
                     //'updated_at',
                     //'updated_by',
