@@ -11,33 +11,39 @@ $this->title = 'Employees';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employee-index">
+    <div class="panel">
+        <div class="panel-body">
+            <p>
+                <?= Html::a('เพิ่มพนักงาน', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
 
-    <p>
-        <?= Html::a('Create Employee', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="panel">
+        <div class="panel-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    'id',
+                    'firstname',
+                    'lastname',
+                    'line',
+                    'created_at',
+                    //'created_by',
+                    //'updated_at',
+                    //'updated_by',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'firstname',
-            'lastname',
-            'line',
-            'created_at',
-            //'created_by',
-            //'updated_at',
-            //'updated_by',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
+</div>
 
 
 </div>
