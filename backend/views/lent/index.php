@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $searchModel backend\models\LentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Lents';
+$this->title = 'ระบบเบิกจ่ายเครื่อง EDC';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lent-index">
@@ -30,11 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+                    // 'id',
                     'lent_date:date',
                     // ชื่อพนักงาน ยืมคืน
                     [
-                        'label' => 'พนักงาน',
+                        'label' => 'ชื่อจริง - นามสกุล',
+                        'attribute' => 'firstname',
                         'value' => function ($data) {
                             return $data->employee['firstname']." ".$data->employee['lastname'];
                         }

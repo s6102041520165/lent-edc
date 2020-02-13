@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'edc_id') ?>
                 </div>
                 <div class="col-lg-6">
-                    <?= $form->field($model, 'status')->dropDownList(['1'=>'คืนเครื่องแล้ว','2'=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ'])?>
+                    <?= $form->field($model, 'status')->dropDownList(['2'=>'คืนเครื่องแล้ว','1'=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ'])?>
                 </div>
             </div>
         </div>
