@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lent */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Lents', 'url' => ['index']];
+$this->title = Yii::$app->formatter->format($model->lent_date, 'date');
+$this->params['breadcrumbs'][] = ['label' => 'ระบบเบิกจ่ายเครื่อง EDC', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -25,48 +25,50 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ])?>
     </p>
+    <div class="panel">
+        <div class="panel-body">
+        <?=DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                // 'id',
+                'lent_date:date',
+                [
+                    'label' => 'พนักงาน',
+                    'value' => function ($data) {
+                        return $data->employee['firstname'] . " " . $data->employee['lastname'];
+                    },
+                ],
+                ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
+                // status การยืม
+                [
+                    'label' => 'สถานะการยืมคืน',
+                    'value' => function ($data) {
+                        if ($data->status == 1) {
+                            return 'กำลังยืม';
+                        } else if ($data->status == 2) {
+                            return 'คืนแล้ว';
+                        }
+                    },
+                ],
+                'return_date',
 
-    <?=DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        // 'id',
-        'lent_date',
-        [
-            'label' => 'พนักงาน',
-            'value' => function ($data) {
-                return $data->employee['firstname'] . " " . $data->employee['lastname'];
-            },
-        ],
-        ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
-        // status การยืม
-        [
-            'label' => 'สถานะการยืมคืน',
-            'value' => function ($data) {
-                if ($data->status == 1) {
-                    return 'กำลังยืม';
-                } else if ($data->status == 2) {
-                    return 'คืนแล้ว';
-                }
-            },
-        ],
-        'return_date',
-
-        // ส่วนอัพเดทแก้ไขเมื่อ
-        'created_at:datetime',
-        [
-            'attribute' => 'created_by',
-            'value' => function($data){
-                return $data->creator['username'];
-            },
-        ],
-        'updated_at:datetime',
-        [
-            'attribute' => 'updated_by',
-            'value' => function($data){
-                return $data->updator['username'];
-            },
-        ],
-    ],
-])?>
-
+                // ส่วนอัพเดทแก้ไขเมื่อ
+                'created_at:datetime',
+                [
+                    'attribute' => 'created_by',
+                    'value' => function($data){
+                        return $data->creator['username'];
+                    },
+                ],
+                'updated_at:datetime',
+                [
+                    'attribute' => 'updated_by',
+                    'value' => function($data){
+                        return $data->updator['username'];
+                    },
+                ],
+            ],
+        ])?>
+        </div>
+    </div>
 </div>
