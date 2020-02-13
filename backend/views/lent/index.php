@@ -2,7 +2,7 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
-
+use kartik\depdrop\DepDrop;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\LentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel">
         <div class="panel-body">
-
             <?=GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
