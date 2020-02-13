@@ -5,9 +5,11 @@ namespace backend\controllers;
 use Yii;
 use app\models\Employee;
 use backend\models\EmployeeSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * EmployeeController implements the CRUD actions for Employee model.
@@ -20,10 +22,20 @@ class EmployeeController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'index','update','view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -64,6 +76,9 @@ class EmployeeController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can("createEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+            
         $model = new Employee();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,6 +99,9 @@ class EmployeeController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can("editEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -104,6 +122,9 @@ class EmployeeController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can("deleteEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

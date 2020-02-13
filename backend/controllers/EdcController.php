@@ -5,9 +5,11 @@ namespace backend\controllers;
 use Yii;
 use app\models\Edc;
 use backend\models\EdcSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * EdcController implements the CRUD actions for Edc model.
@@ -20,10 +22,20 @@ class EdcController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'index','update','view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -35,6 +47,7 @@ class EdcController extends Controller
      */
     public function actionIndex()
     {
+        
         $searchModel = new EdcSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -64,6 +77,9 @@ class EdcController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can("createEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
         $model = new Edc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,6 +100,9 @@ class EdcController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can("editEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+            
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -104,6 +123,8 @@ class EdcController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can("deleteEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

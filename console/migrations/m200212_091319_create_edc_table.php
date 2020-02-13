@@ -17,7 +17,6 @@ class m200212_091319_create_edc_table extends Migration
             'serial_no' => $this->string(50),
             'import_date' => $this->date(),
             'status' => $this->integer(),
-            
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
