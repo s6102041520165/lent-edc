@@ -17,12 +17,15 @@ class m200212_091319_create_edc_table extends Migration
             'serial_no' => $this->string(50),
             'import_date' => $this->date(),
             'status' => $this->integer(),
+            'district_id' => $this->integer(),
             
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
             'updated_by' => $this->integer()
         ]);
+
+        $this->addForeignKey('FK_EDC_DISTRICT','{{%edc}}','[[district_id]]','{{%district}}','[[id]]');
     }
 
     /**
