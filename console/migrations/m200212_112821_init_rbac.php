@@ -72,7 +72,7 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($admin, $createEmployee);
         $auth->addChild($admin, $editEmployee);
         $auth->addChild($admin, $deleteEmployee);
-        $auth->addChild($employee, $viewEmployee);
+        $auth->addChild($admin, $viewEmployee);
         $auth->addChild($admin, $employee);
 
         // Assign roles to users. 1 and 2 are IDs returned by IdentityInterface::getId()
