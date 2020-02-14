@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -31,6 +32,15 @@ class LoginForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'rememberMe' => 'จดจำฉันไว้',
+            'username' => 'ชื่อผู้ใช้',
+            'password' => 'รหัสผ่าน',
+        ];
+    }
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -58,7 +68,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
+
         return false;
     }
 
