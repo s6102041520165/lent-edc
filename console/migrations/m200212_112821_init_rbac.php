@@ -15,6 +15,7 @@ class m200212_112821_init_rbac extends Migration
         $auth = Yii::$app->authManager;
 
         // add "Employee" permission
+        /**------------Employee-----------** */
         $createEmployee = $auth->createPermission('createEmployee');
         $createEmployee->description = 'Create an employee';
         $auth->add($createEmployee);
@@ -27,7 +28,12 @@ class m200212_112821_init_rbac extends Migration
         $editEmployee->description = 'Create an employee';
         $auth->add($editEmployee);
 
+        $viewEmployee = $auth->createPermission('viewEmployee');
+        $viewEmployee->description = 'View an employee';
+        $auth->add($viewEmployee);
+
         // add "Card" permission
+        /**-----------Edc----------- */
         $createEdc = $auth->createPermission('createEdc');
         $createEdc->description = 'Create a Edc';
         $auth->add($createEdc);
@@ -40,6 +46,12 @@ class m200212_112821_init_rbac extends Migration
         $deleteEdc->description = 'Create a Edc';
         $auth->add($deleteEdc);
 
+        $viewEdc = $auth->createPermission('viewEdc');
+        $viewEdc->description = 'View a Edc';
+        $auth->add($viewEdc);
+
+        /**-----------Lent Edc--------------* */
+
         $lentEdc = $auth->createPermission('lentEdc');
         $lentEdc->description = 'Lent a Edc';
         $auth->add($lentEdc);
@@ -50,6 +62,8 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($employee, $createEdc);
         $auth->addChild($employee, $editEdc);
         $auth->addChild($employee, $deleteEdc);
+        $auth->addChild($employee, $viewEdc);
+        $auth->addChild($employee, $lentEdc);
 
         // add "admin" role and give this role the "updatePost" permission
         // as well as the permissions of the "author" role
@@ -58,6 +72,7 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($admin, $createEmployee);
         $auth->addChild($admin, $editEmployee);
         $auth->addChild($admin, $deleteEmployee);
+        $auth->addChild($employee, $viewEmployee);
         $auth->addChild($admin, $employee);
 
         // Assign roles to users. 1 and 2 are IDs returned by IdentityInterface::getId()

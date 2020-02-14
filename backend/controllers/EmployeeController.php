@@ -47,6 +47,9 @@ class EmployeeController extends Controller
      */
     public function actionIndex()
     {
+        if(!Yii::$app->user->can("viewEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+            
         $searchModel = new EmployeeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -64,6 +67,9 @@ class EmployeeController extends Controller
      */
     public function actionView($id)
     {
+        if(!Yii::$app->user->can("viewEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
