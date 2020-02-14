@@ -26,5 +26,18 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@frontend/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 's6102041520165@email.kmutnb.com',
+                'password' => 'weerachai06',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
+        ]
     ],
 ];
