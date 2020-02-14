@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdcSearch */
@@ -11,6 +12,7 @@ $this->title = 'Edcs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edc-index">
+    <?php Pjax::begin(); ?>
     <div class="panel">
         <div class="panel-body">
             <p>
@@ -35,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'import_date:date',
                     'serial_no',
                     // 'status',
-                    
+
                     'created_at:relativeTime',
 
                     //'created_by',
@@ -47,8 +49,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
         </div>
     </div>
-</div>
-</div>
-
-
+    <?php Pjax::end() ?>
 </div>

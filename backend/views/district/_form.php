@@ -15,7 +15,6 @@ use yii\widgets\ActiveForm;
         <div class="panel-body">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             
-
             <div class="form-group">
                 <?= Html::submitButton('เพิ่มข้อมูล', ['class' => 'btn btn-success']) ?>
             </div>

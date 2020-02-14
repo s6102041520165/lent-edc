@@ -26,7 +26,8 @@ use yii\widgets\ActiveForm;
                 'language' => 'th',
                 'dateFormat' => 'yyyy-MM-dd',
                 'options'=>[
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'data-pjax' => 1
                 ]
             ]) ?>
         </div>

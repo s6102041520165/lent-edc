@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\DistrictSearch */
@@ -12,13 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="district-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    
     <p>
         <?= Html::a('เพิ่มเขต กพส.', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php Pjax::begin() ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="panel">
         <div class="panel-body">
             <?= GridView::widget([
@@ -35,5 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
         </div>
     </div>
+    <?php Pjax::end(); ?>
 
 </div>
