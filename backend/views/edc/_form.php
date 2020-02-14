@@ -4,6 +4,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use app\models\District;
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model app\models\Edc */
 /* @var $form yii\widgets\ActiveForm */
@@ -26,8 +28,19 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
 
 
-
-
+        <?php
+            $data = ArrayHelper::map(District::find()->asArray()->all(),'id', 'name'); 
+            // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
+            echo '<label class="control-label">เครื่องเขต กพส.</label>';
+            echo Select2::widget([
+                'name' => 'district_id',
+                'data' => $data,
+                'options' => ['placeholder' => 'กรุณากรอกเครื่อง Edc','tabindex' => ''],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ]
+            ]);
+        ?>     
 
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 

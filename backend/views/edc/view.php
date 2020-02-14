@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     },
                 ],
-
+                'district_id',
                 // ส่วนแสดงอัพเดทแก้ไขเมื่อ
                 'created_at:datetime',
                 [

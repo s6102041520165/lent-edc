@@ -53,6 +53,7 @@ class Edc extends \yii\db\ActiveRecord
             'serial_no' => 'Serial No',
             'import_date' => 'วัน เดือน ปี ที่ได้มา',
             'status' => 'สภาพการใช้งาน',
+            'district_id' => 'เขต กพส.',
             'created_at' => 'เพิ่มข้อมูลเมื่อ',
             'created_by' => 'เพิ่มข้อมูลโดย',
             'updated_at' => 'แก้ไขข้อมูลเมื่อ',

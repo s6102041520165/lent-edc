@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%edc}}`.
  */
-class m200212_091319_create_edc_table extends Migration
+class m200214_115709_create_edc_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class m200212_091319_create_edc_table extends Migration
             'updated_by' => $this->integer()
         ]);
 
-        $this->addForeignKey('FK_EDC_DISTRICT','{{%edc}}','[[district_id]]','{{district}}','[[id]]');
+        $this->addForeignKey('FK_EDC_DISTRICT','{{%edc}}','[[district_id]]','{{district}}');
     }
 
     /**
