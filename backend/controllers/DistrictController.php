@@ -8,6 +8,7 @@ use backend\models\DistrictSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * DistrictController implements the CRUD actions for District model.
@@ -35,6 +36,9 @@ class DistrictController extends Controller
      */
     public function actionIndex()
     {
+        if(!Yii::$app->user->can("viewDistrict"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
+
         $searchModel = new DistrictSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +56,9 @@ class DistrictController extends Controller
      */
     public function actionView($id)
     {
+        if(!Yii::$app->user->can("viewDistrict"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,6 +71,9 @@ class DistrictController extends Controller
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can("createDistrict"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
+
         $model = new District();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,6 +94,9 @@ class DistrictController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(!Yii::$app->user->can("editDistrict"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -104,6 +117,9 @@ class DistrictController extends Controller
      */
     public function actionDelete($id)
     {
+        if(!Yii::$app->user->can("deleteDistrict"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
