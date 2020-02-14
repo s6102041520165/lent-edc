@@ -7,6 +7,8 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use app\models\Employee;
 use app\models\Edc;
+use rmrevin\yii\fontawesome\FA;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Lent */
 /* @var $form yii\widgets\ActiveForm */
@@ -68,7 +70,7 @@ use app\models\Edc;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(FA::icon('save').' บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

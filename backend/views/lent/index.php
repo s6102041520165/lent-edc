@@ -3,6 +3,8 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 use kartik\depdrop\DepDrop;
+use rmrevin\yii\fontawesome\FA;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\LentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <p>
-                <?=Html::a('ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success'])?>
+                <?=Html::a(FA::icon('plus').' ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success'])?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
