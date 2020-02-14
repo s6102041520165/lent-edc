@@ -50,6 +50,24 @@ class m200212_112821_init_rbac extends Migration
         $viewEdc->description = 'View a Edc';
         $auth->add($viewEdc);
 
+        // add "Card" permission
+        /**-----------Edc----------- */
+        $createDistrict = $auth->createPermission('createDistrict');
+        $createDistrict->description = 'Create a District';
+        $auth->add($createDistrict);
+
+        $editDistrict = $auth->createPermission('editDistrict');
+        $editDistrict->description = 'Edit district';
+        $auth->add($editDistrict);
+
+        $deleteDistrict = $auth->createPermission('deleteDistrict');
+        $deleteDistrict->description = 'Delete a district';
+        $auth->add($deleteDistrict);
+
+        $viewDistrict = $auth->createPermission('viewDistrict');
+        $viewDistrict->description = 'View a district';
+        $auth->add($viewDistrict);
+
         /**-----------Lent Edc--------------* */
 
         $lentEdc = $auth->createPermission('lentEdc');
@@ -64,6 +82,7 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($employee, $deleteEdc);
         $auth->addChild($employee, $viewEdc);
         $auth->addChild($employee, $lentEdc);
+        $auth->addChild($employee, $viewDistrict);
 
         // add "admin" role and give this role the "updatePost" permission
         // as well as the permissions of the "author" role
@@ -73,6 +92,9 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($admin, $editEmployee);
         $auth->addChild($admin, $deleteEmployee);
         $auth->addChild($admin, $viewEmployee);
+        $auth->addChild($admin, $deleteDistrict);
+        $auth->addChild($admin, $editDistrict);
+        $auth->addChild($admin, $createDistrict);
         $auth->addChild($admin, $employee);
 
         // Assign roles to users. 1 and 2 are IDs returned by IdentityInterface::getId()
