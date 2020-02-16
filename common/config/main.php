@@ -38,6 +38,9 @@ return [
                 'port' => '587',
                 'encryption' => 'tls',
             ],
-        ]
+        ],
+        'rfidConnection' => [
+            'class' => \Kakadu\Yii2RfidReader\Connection::class,
+        ],
     ],
 ];

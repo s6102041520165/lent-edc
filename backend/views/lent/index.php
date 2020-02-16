@@ -4,6 +4,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use kartik\depdrop\DepDrop;
 use rmrevin\yii\fontawesome\FA;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\LentSearch */
@@ -13,10 +14,11 @@ $this->title = 'ระบบเบิกจ่ายเครื่อง EDC';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lent-index">
+    <?php Pjax::begin() ?>
     <div class="panel">
         <div class="panel-body">
             <p>
-                <?=Html::a(FA::icon('plus').' ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success'])?>
+                <?= Html::a(FA::icon('plus') . ' ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -25,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel">
         <div class="panel-body">
-            <?=GridView::widget([
+            <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
                 'columns' => [
@@ -38,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'ชื่อจริง - นามสกุล',
                         'attribute' => 'firstname',
                         'value' => function ($data) {
-                            return $data->employee['firstname']." ".$data->employee['lastname'];
+                            return $data->employee['firstname'] . " " . $data->employee['lastname'];
                         }
                     ],
                     ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
@@ -46,9 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => 'สถานะการยืมคืน',
                         'value' => function ($data) {
-                            if($data->status==1){
+                            if ($data->status == 1) {
                                 return 'กำลังยืม';
-                            }else if($data->status==2){
+                            } else if ($data->status == 2) {
                                 return 'คืนแล้ว';
                             }
                         }
@@ -62,9 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
-            ]);?>
+            ]); ?>
         </div>
     </div>
-
+    <?php Pjax::end() ?>
 
 </div>

@@ -20,6 +20,9 @@ use rmrevin\yii\fontawesome\FA;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'options' => [
+            'data-pjax' => 1,
+        ]
     ]); ?>
 
     <?php // $form->field($model, 'id') 
