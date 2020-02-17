@@ -14,7 +14,7 @@ class m200212_091405_create_employee_table extends Migration
     {
         $this->createTable('{{%employee}}', [
             'id' => $this->primaryKey(),
-            'rfid'=>$this->integer()->unique(),
+            'rfid'=>$this->string(20)->unique(),
             'firstname' => $this->string(50),
             'lastname' => $this->string(50),
             'line' => $this->string(50),

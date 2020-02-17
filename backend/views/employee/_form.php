@@ -16,8 +16,11 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-6">
             <?= $form->field($model, 'lastname')->textInput() ?>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <?= $form->field($model, 'line')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'rfid')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
