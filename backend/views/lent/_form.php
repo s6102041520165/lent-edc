@@ -24,45 +24,31 @@ use rmrevin\yii\fontawesome\FA;
                     <?= $form->field($model, 'lent_date')->widget(\yii\jui\DatePicker::classname(), [
                         'language' => 'th',
                         'dateFormat' => 'yyyy-MM-dd',
-                        'options'=>[
+                        'options' => [
                             'class' => 'form-control'
                         ]
                     ]) ?>
                 </div>
+                
+
                 <div class="col-lg-12">
-                    <?php // $form->field($model, 'employee_id') ?>
-                    <?php
-                        $data = ArrayHelper::map(Employee::find()->all(),'id', 'firstname'); 
-                        // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-                        echo '<label class="control-label">พนักงาน</label>';
-                        echo Select2::widget([
-                            'name' => 'state_10',
-                            'data' => $data,
-                            'options' => ['placeholder' => 'กรุณาเลือกผู้เบิกจ่าย'],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                        ]);
+                    <?= $form->field($model, 'status')->dropDownList(['2' => 'คืนเครื่องแล้ว', '1' => 'ยังไม่คืนเครื่อง'], ['prompt' => 'กรุณาเลือกสถานะ']) ?>
+                </div>
+                <div class="col-lg-12">
+                    <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) 
                     ?>
-                </div>
-               
-                <div class="col-lg-12">
-                    <?= $form->field($model, 'status')->dropDownList(['2'=>'คืนเครื่องแล้ว','1'=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ'])?>
-                </div>
-                <div class="col-lg-12">
-                    <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) ?>
+                    
                     <?php
-                        $data = ArrayHelper::map(Edc::find()->where(['status'=>'1'])->all(),'id', 'serial_no'); 
-                        // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-                        echo '<label class="control-label">เครื่อง EDC</label>';
-                        echo Select2::widget([
-                            'name' => 'state_10',
-                            'data' => $data,
-                            'options' => ['placeholder' => 'กรุณากรอกเครื่อง Edc','tabindex' => ''],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ]
-                        ]);
+                    $data = ArrayHelper::map(Edc::find()->asArray()->all(), 'id', 'serial_no');
+                    // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
+                    echo $form->field($model, 'edc_id')->widget(Select2::className(), [
+                        'data' => $data,
+                        'language' => 'th',
+                        'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
                     ?>
                 </div>
             </div>
@@ -70,7 +56,7 @@ use rmrevin\yii\fontawesome\FA;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton(FA::icon('save').' บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(FA::icon('save') . ' บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

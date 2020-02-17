@@ -38,7 +38,7 @@ class Edc extends \yii\db\ActiveRecord
     {
         return [
             [['import_date'], 'safe'],
-            [['status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['status', 'created_at', 'created_by', 'updated_at', 'updated_by','district_id'], 'integer'],
             [['serial_no'], 'string', 'max' => 50],
         ];
     }
@@ -84,6 +84,11 @@ class Edc extends \yii\db\ActiveRecord
     public function getEmployee()
     {
         return $this->hasOne(Employee::className(), ['id' => 'employee_id']);
+    }
+
+    public function getDistrict()
+    {
+        return $this->hasOne(District::className(), ['id' => 'district_id']);
     }
 
     public function getCreator()
