@@ -28,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'view', 'summary'],
+                        'actions' => ['create', 'index', 'update', 'view', 'summary','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -129,8 +129,15 @@ class LentController extends Controller
 
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $date = null;
+            if ($model->status == 2) {
+                $date = date("Y-m-d");
+                $model->setAttribute('return_date',$date);
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
