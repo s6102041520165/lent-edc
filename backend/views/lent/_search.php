@@ -36,12 +36,13 @@ use rmrevin\yii\fontawesome\FA;
             // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
             echo '<label class="control-label">เครื่อง EDC</label>';
             echo Select2::widget([
-                'name' => 'state_10',
+                'model' => $model,
+                'attribute' => 'edc_id',
                 'data' => $data,
-                'options' => ['placeholder' => 'กรุณากรอกเครื่อง Edc', 'tabindex' => ''],
+                'options' => ['placeholder' => 'กรุณาเลือกเครื่อง EDC'],
                 'pluginOptions' => [
                     'allowClear' => true
-                ]
+                ],
             ]);
             ?>
         </div>
@@ -62,9 +63,10 @@ use rmrevin\yii\fontawesome\FA;
             // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
             echo '<label class="control-label">พนักงาน</label>';
             echo Select2::widget([
-                'name' => 'state_10',
+                'model' => $model,
+                'attribute' => 'employee_id',
                 'data' => $data,
-                'options' => ['placeholder' => 'กรุณาเลือกผู้เบิกจ่าย'],
+                'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],

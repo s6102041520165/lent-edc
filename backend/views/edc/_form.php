@@ -30,16 +30,19 @@ use kartik\select2\Select2;
 
         <?php
             $data = ArrayHelper::map(District::find()->asArray()->all(),'id', 'name'); 
-            // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-             echo $form->field($model, 'district_id')->widget(Select2::classname(), [
+            echo Select2::widget([
+                'model' => $model,
+                'attribute' => 'district_id',
                 'data' => $data,
-                'language' => 'de',
                 'options' => ['placeholder' => 'Select a state ...'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
             ]);
         ?>     
+
+        <?= $form->field($model, 'district_id')->dropDownList($da)
+        ?>       
 
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 

@@ -33,12 +33,9 @@ use rmrevin\yii\fontawesome\FA;
                     <?php // $form->field($model, 'employee_id') ?>
                     <?php
                         $data = ArrayHelper::map(Employee::find()->all(),'id', 'firstname'); 
-                        // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-                        echo '<label class="control-label">พนักงาน</label>';
-                        echo Select2::widget([
-                            'name' => 'state_10',
+                        echo $form->field($model, 'state_1')->widget(Select2::classname(), [
                             'data' => $data,
-                            'options' => ['placeholder' => 'กรุณาเลือกผู้เบิกจ่าย'],
+                            'options' => ['placeholder' => 'Select a state ...'],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],

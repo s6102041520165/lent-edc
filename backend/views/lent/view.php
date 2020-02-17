@@ -33,10 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'id',
                 'lent_date:date',
                 [
-                    'label' => 'พนักงาน',
-                    'value' => function ($data) {
-                        return $data->employee['firstname'] . " " . $data->employee['lastname'];
-                    },
+                    'label' => 'ชื่อจริง - นามสกุล',
+                    'attribute' => 'employee_id'
                 ],
                 ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
                 // status การยืม
