@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use app\models\Edc;
 use backend\models\EdcSearch;
+use kartik\mpdf\Pdf;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -26,7 +27,7 @@ class EdcController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index','update','view'],
+                        'actions' => ['create', 'index', 'update', 'view','print'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -47,7 +48,7 @@ class EdcController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->can("viewEdc"))
+        if (!Yii::$app->user->can("viewEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $searchModel = new EdcSearch();
@@ -67,7 +68,7 @@ class EdcController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->can("viewEdc"))
+        if (!Yii::$app->user->can("viewEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         return $this->render('view', [
@@ -82,7 +83,7 @@ class EdcController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->can("createEdc"))
+        if (!Yii::$app->user->can("createEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $model = new Edc();
@@ -105,9 +106,9 @@ class EdcController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->can("editEdc"))
+        if (!Yii::$app->user->can("editEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-            
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -128,11 +129,37 @@ class EdcController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->can("deleteEdc"))
+        if (!Yii::$app->user->can("deleteEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+
+    public function actionPrint()
+    {
+        $model = Edc::find()->all();
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $this->renderPartial('_print'),
+            'options' => [
+                // any mpdf options you wish to set
+            ],
+            'methods' => [
+                'SetTitle' => 'Privacy Policy - Krajee.com',
+                'SetSubject' => 'Generating PDF files via yii2-mpdf extension has never been easy',
+                'SetHeader' => ['Krajee Privacy Policy||Generated On: ' . date("r")],
+                'SetFooter' => ['|Page {PAGENO}|'],
+                'SetAuthor' => 'Kartik Visweswaran',
+                'SetCreator' => 'Kartik Visweswaran',
+                'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, Privacy, Policy, yii2-mpdf',
+            ]
+        ]);
+        return $pdf->render();
     }
 
     /**

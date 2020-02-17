@@ -23,7 +23,8 @@
         "kartik-v/yii2-widget-select2": "dev-master",
         "dmstr/yii2-adminlte-asset": "*",
         "rmrevin/yii2-fontawesome": "2.10.*",
-        "kakadu-dev/yii2-rfid-reader": "@dev"
+        "kakadu-dev/yii2-rfid-reader": "@dev",
+        "kartik-v/yii2-mpdf": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

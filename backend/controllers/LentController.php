@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
+use kartik\mpdf\Pdf;
 
 /**
  * LentController implements the CRUD actions for Lent model.
@@ -54,6 +55,20 @@ class LentController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSummary()
+    {
+        if(!Yii::$app->user->can("lentEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
+        $searchModel = new LentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('summary', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
