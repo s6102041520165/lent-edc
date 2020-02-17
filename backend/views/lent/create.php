@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
             <?= $this->render('_form', [
                 'model' => $model,
+                'status' => [1=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ']
             ]) ?>
         </div>
     </div>

@@ -46,28 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ],
                     [
-                        'attribute' => 'district_id',
-                        'value' => function($data){
-                            return $data->district['name'];
-                        }
-                    },
-                ],
-                
-                [
-                    'label' => 'เขต กพส.',
-                    'value' => function ($data) {
-                        return $data->district_id;
-                    },
-                ],
-                // ส่วนแสดงอัพเดทแก้ไขเมื่อ
-                'created_at:datetime',
-                [
-                    'attribute' => 'created_by',
-                    'value' => function ($data) {
-                        return $data->creator['username'];
-                    },
-                ],
-            ]) ?>
+                        'label' => 'เขต กพส.',
+                        'attribute' => 'district.name'
+                    ],
+                    // ส่วนแสดงอัพเดทแก้ไขเมื่อ
+                    'created_at:datetime',
+                    [
+                        'attribute' => 'created_by',
+                        'value' => function ($data) {
+                            return $data->creator['username'];
+                        },
+                    ],
+                ]
+            ]); ?>
         </div>
     </div>
 

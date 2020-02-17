@@ -35,7 +35,7 @@ use rmrevin\yii\fontawesome\FA;
                     <?php // $form->field($model, 'employee_id') ?>
                     <?php
                         $data = ArrayHelper::map(Employee::find()->all(),'id', 'firstname'); 
-                        echo $form->field($model, 'state_1')->widget(Select2::classname(), [
+                        echo $form->field($model, 'employee_id')->widget(Select2::classname(), [
                             'data' => $data,
                             'options' => ['placeholder' => 'Select a state ...'],
                             'pluginOptions' => [
@@ -46,14 +46,14 @@ use rmrevin\yii\fontawesome\FA;
                 </div>
                
                 <div class="col-lg-12">
-                    <?= $form->field($model, 'status')->dropDownList(['2'=>'คืนเครื่องแล้ว','1'=>'ยังไม่คืนเครื่อง'],['prompt' => 'กรุณาเลือกสถานะ'])?>
+                    <?= $form->field($model, 'status')->dropDownList($status)?>
                 </div>
                 <div class="col-lg-12">
                     <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) 
                     ?>
                     
                     <?php
-                    $data = ArrayHelper::map(Edc::find()->asArray()->all(), 'id', 'serial_no');
+                    $data = ArrayHelper::map(Edc::find()->where(['status'=>'1'])->asArray()->all(), 'id', 'serial_no');
                     // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
                     echo $form->field($model, 'edc_id')->widget(Select2::className(), [
                         'data' => $data,
@@ -63,6 +63,16 @@ use rmrevin\yii\fontawesome\FA;
                             'allowClear' => true
                         ],
                     ]);
+
+                    // echo Select2::widget([
+                    //     'name' => 'edc_id',
+                    //     'data' => $data,
+                    //     'size' => Select2::SMALL,
+                    //     'options' => ['placeholder' => 'Select a state ...'],
+                    //     'pluginOptions' => [
+                    //         'allowClear' => true
+                    //     ],
+                    // ])
                     ?>
                 </div>
             </div>

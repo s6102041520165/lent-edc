@@ -28,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'view', 'summary'],
+                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

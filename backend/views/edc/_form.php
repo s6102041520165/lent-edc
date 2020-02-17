@@ -41,9 +41,6 @@ use kartik\select2\Select2;
             ]);
             ?>
 
-        <?= $form->field($model, 'district_id')->dropDownList($da)
-        ?>       
-
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
             <?= $form->field($model, 'status')->dropDownList(['1' => 'ใช้งานได้', '2' => 'ส่งซ่อม'], ['prompt' => 'กรุณาเลือกสถานะ']) ?>

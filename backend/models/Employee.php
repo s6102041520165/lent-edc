@@ -38,6 +38,7 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['rfid','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['rfid'], 'string', 'max' => 20],
             [['firstname', 'lastname', 'line'], 'string', 'max' => 50],

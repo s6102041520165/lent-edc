@@ -40,6 +40,7 @@ class Lent extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['edc_id', 'required','message'=>'กรุณากรอกข้อมูล {attribute}'],
             [['lent_date', 'return_date'], 'safe'],
             [['employee_id', 'edc_id', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['edc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Edc::className(), 'targetAttribute' => ['edc_id' => 'id']],
