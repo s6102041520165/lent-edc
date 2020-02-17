@@ -27,7 +27,7 @@ class EdcController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'view','print'],
+                        'actions' => ['create', 'index', 'update', 'view','print','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

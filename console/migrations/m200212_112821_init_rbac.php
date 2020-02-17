@@ -83,15 +83,15 @@ class m200212_112821_init_rbac extends Migration
         $auth->addChild($employee, $viewEdc);
         $auth->addChild($employee, $lentEdc);
         $auth->addChild($employee, $viewDistrict);
+        $auth->addChild($employee, $createEmployee);
+        $auth->addChild($employee, $editEmployee);
+        $auth->addChild($employee, $viewEmployee);
 
         // add "admin" role and give this role the "updatePost" permission
         // as well as the permissions of the "author" role
         $admin = $auth->createRole('admin');
         $auth->add($admin);
-        $auth->addChild($admin, $createEmployee);
-        $auth->addChild($admin, $editEmployee);
         $auth->addChild($admin, $deleteEmployee);
-        $auth->addChild($admin, $viewEmployee);
         $auth->addChild($admin, $deleteDistrict);
         $auth->addChild($admin, $editDistrict);
         $auth->addChild($admin, $createDistrict);

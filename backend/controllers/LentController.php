@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use app\models\Edc;
 use Yii;
 use app\models\Lent;
 use backend\models\LentSearch;
@@ -27,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index','update','view'],
+                        'actions' => ['create', 'index', 'update', 'view', 'summary'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -48,7 +49,7 @@ class LentController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $searchModel = new LentSearch();
@@ -62,16 +63,15 @@ class LentController extends Controller
 
     public function actionSummary()
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
-        $searchModel = new LentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = (new \yii\db\Query())->from('edc')->where('status=1');
+        $sum = $query->count('*');
+        
+        
 
-        return $this->render('summary', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('summary');
     }
 
     /**
@@ -82,7 +82,7 @@ class LentController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         return $this->render('view', [
@@ -97,7 +97,7 @@ class LentController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $model = new Lent();
@@ -120,7 +120,7 @@ class LentController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $model = $this->findModel($id);
@@ -143,9 +143,9 @@ class LentController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->can("lentEdc"))
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-            
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

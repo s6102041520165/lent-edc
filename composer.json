@@ -24,7 +24,13 @@
         "dmstr/yii2-adminlte-asset": "*",
         "rmrevin/yii2-fontawesome": "2.10.*",
         "kakadu-dev/yii2-rfid-reader": "@dev",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "kongoon/yii2-c3js-chart": "^0.0.4",
+        "practically/yii2-chartjs": "^1.0",
+        "bower-asset/chart-js": "^2.9",
+        "onmotion/yii2-widget-apexcharts": "^1.0",
+        "miloschuman/yii2-highcharts-widget": "^7.1",
+        "2amigos/yii2-chartjs-widget": "~2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

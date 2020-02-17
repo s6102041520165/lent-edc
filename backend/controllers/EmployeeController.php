@@ -26,7 +26,7 @@ class EmployeeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index','update','view'],
+                        'actions' => ['create', 'index','update','view','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

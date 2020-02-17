@@ -35,8 +35,8 @@
                     ['label' => 'พนักงาน ขสมก.', 'icon' => 'users', 'url' => ['/employee'], 'visible' => (Yii::$app->user->can("viewEmployee")) ? true : false],
                     ['label' => 'เครื่อง EDC', 'icon' => 'credit-card', 'url' => ['/edc'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
                     ['label' => 'การยืมคืนเครื่อง EDC', 'icon' => 'list-ul', 'url' => ['/lent'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
-                    ['label' => 'สรุปข้อมูลยืมคืนเครื่อง', 'icon' => 'area-chart', 'url' => ['/lent-summary'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
-                    ['label' => 'view', 'icon' => 'map-marker', 'url' => ['/district'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
+                    ['label' => 'สรุปข้อมูลยืมคืนเครื่อง', 'icon' => 'area-chart', 'url' => ['/lent/summary'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
+                    ['label' => 'เขต กพส.', 'icon' => 'map-marker', 'url' => ['/district'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
