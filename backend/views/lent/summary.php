@@ -9,7 +9,7 @@ use dosamigos\chartjs\ChartJs;
         'width' => '500px'
     ],
     'data' => [
-        'labels' => ["January", "February"],
+        'labels' => ["พนักงานยืมเครื่อง EDC", "เครื่อง EDC พร้อมใช้งาน"],
         'datasets' => [
             [
                 'label' => "My First dataset",
@@ -22,7 +22,7 @@ use dosamigos\chartjs\ChartJs;
                 'pointBorderColor' => "#fff",
                 'pointHoverBackgroundColor' => "#fff",
                 'pointHoverBorderColor' => "rgba(179,181,198,1)",
-                'data' => [65, 59]
+                'data' => [$lent, $active]
             ]
         ]
     ]

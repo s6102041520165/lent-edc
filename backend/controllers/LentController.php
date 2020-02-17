@@ -66,12 +66,16 @@ class LentController extends Controller
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
-        $query = (new \yii\db\Query())->from('edc')->where('status=1');
-        $sum = $query->count('*');
-        
-        
+        $modelEDC = (new \yii\db\Query())->from('edc')->where('status=1');
+        $sumEDC = $modelEDC->count('*');
 
-        return $this->render('summary');
+        $modelLent = (new \yii\db\Query())->from('lent')->where('status=1');
+        $sumLent = $modelLent->count('*');
+
+        return $this->render('summary', [
+            'lent' => $sumLent,
+            'active' => $sumEDC,
+        ]);
     }
 
     /**

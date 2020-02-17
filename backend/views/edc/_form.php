@@ -31,14 +31,13 @@ use kartik\select2\Select2;
         <?php
             $data = ArrayHelper::map(District::find()->asArray()->all(),'id', 'name'); 
             // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-            echo '<label class="control-label">เครื่องเขต กพส.</label>';
-            echo Select2::widget([
-                'name' => 'district_id',
+             echo $form->field($model, 'district_id')->widget(Select2::classname(), [
                 'data' => $data,
-                'options' => ['placeholder' => 'กรุณากรอกเครื่อง Edc','tabindex' => ''],
+                'language' => 'de',
+                'options' => ['placeholder' => 'Select a state ...'],
                 'pluginOptions' => [
                     'allowClear' => true
-                ]
+                ],
             ]);
         ?>     
 
