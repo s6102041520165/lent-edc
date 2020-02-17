@@ -14,10 +14,9 @@ use dosamigos\chartjs\ChartJs;
             [
                 'label' => "My First dataset",
                 'backgroundColor' => [
-                    '#ADC3FF',
-                    '#FF9A9A',
+                    'red',
+                    '#99C08E',
                 ],
-                'borderColor' => "rgba(179,181,198,1)",
                 'pointBackgroundColor' => "rgba(179,181,198,1)",
                 'pointBorderColor' => "#fff",
                 'pointHoverBackgroundColor' => "#fff",

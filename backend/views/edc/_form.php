@@ -39,30 +39,34 @@ use kartik\select2\Select2;
                     'allowClear' => true
                 ],
             ]);
-        ?>     
+            ?>
 
         <?= $form->field($model, 'district_id')->dropDownList($da)
         ?>       
 
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
-        <?= $form->field($model, 'status')->dropDownList(['1'=>'ใช้งานได้','2'=>'ส่งซ่อม'],['prompt' => 'กรุณาเลือกสถานะ'])?>
+            <?= $form->field($model, 'status')->dropDownList(['1' => 'ใช้งานได้', '2' => 'ส่งซ่อม'], ['prompt' => 'กรุณาเลือกสถานะ']) ?>
 
-        <?php // $form->field($model, 'created_at')->textInput() ?>
+            <?php // $form->field($model, 'created_at')->textInput() 
+            ?>
 
-        <?php // $form->field($model, 'created_by')->textInput() ?>
+            <?php // $form->field($model, 'created_by')->textInput() 
+            ?>
 
-        <?php // $form->field($model, 'updated_at')->textInput() ?>
+            <?php // $form->field($model, 'updated_at')->textInput() 
+            ?>
 
-        <?php // $form->field($model, 'updated_by')->textInput() ?>
+            <?php // $form->field($model, 'updated_by')->textInput() 
+            ?>
 
-        <div class="form-group">
-            <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+            <div class="form-group">
+                <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
-
-        <?php ActiveForm::end(); ?>
     </div>
-</div>
-    
+
 
 </div>
