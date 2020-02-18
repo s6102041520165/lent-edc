@@ -32,6 +32,13 @@ class ResendVerificationEmailForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'email' => 'อีเมล'
+        ];
+    }
+
     /**
      * Sends confirmation email to user
      *
