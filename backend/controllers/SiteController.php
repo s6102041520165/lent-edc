@@ -145,7 +145,7 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('สำเร็จ', 'บันทึกรหัสผ่านใหม่เรียบร้อย');
 
             return $this->goHome();
         }
@@ -171,12 +171,12 @@ class SiteController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+                Yii::$app->session->setFlash('สำเร็จ', 'กรุณายืนยันอีเมลในข้อความของท่าน');
                 return $this->goHome();
             }
         }
 
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('ผิดพลาด', 'ขออภัย, ไม่สามารถยืนยันอีเมลของท่านได้.');
         return $this->goHome();
     }
 
