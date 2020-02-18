@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => (Yii::$app->user->can('viewEmployee'))? "{view} {update}": "{view} {update} {delete}",
+                        'template' => (!Yii::$app->user->can('deleteEmployee'))? "{view} {update}": "{view} {update} {delete}",
                     ],
                 ],
             ]); ?>

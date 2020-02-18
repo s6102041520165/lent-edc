@@ -34,15 +34,13 @@ use kartik\select2\Select2;
                 'model' => $model,
                 'attribute' => 'district_id',
                 'data' => $data,
-                'options' => ['placeholder' => 'Select a state ...'],
+                'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
             ]);
             ?>
-
-        <?= $form->field($model, 'district_id')->dropDownList($da)
-        ?>       
+      
 
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
