@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'line',
+                    'district.name',
                     'created_at:relativeTime',
                     //'created_by',
                     //'updated_at',

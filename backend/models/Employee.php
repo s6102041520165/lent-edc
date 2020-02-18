@@ -39,10 +39,11 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             ['rfid','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['created_at','district_id', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['rfid'], 'string', 'max' => 20],
             [['firstname', 'lastname', 'line'], 'string', 'max' => 50],
             [['rfid'], 'unique','message' => '{attribute} ไม่สามารถเพิ่มได้ เนื่องจากพบ {value} ในฐานข้อมูล'],
+            [['district_id'], 'exist', 'skipOnError' => true, 'targetClass' => District::className(), 'targetAttribute' => ['district_id' => 'id']],
         ];
     }
 
@@ -57,6 +58,7 @@ class Employee extends \yii\db\ActiveRecord
             'firstname' => 'ชื่อ',
             'lastname' => 'นามสกุล',
             'line' => 'สายการเดินรถ',
+            'district_id' => 'เขต กพส.',
             'created_at' => 'เพิ่มเมื่อ',
             'created_by' => 'เพิ่มโดย',
             'updated_at' => 'แก้ไขเมื่อ',
@@ -77,6 +79,12 @@ class Employee extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
+
+    public function getDistrict()
+    {
+        return $this->hasOne(District::className(), ['id' => 'district_id']);
+    }
+
     public function getLents()
     {
         return $this->hasMany(Lent::className(), ['employee_id' => 'id']);

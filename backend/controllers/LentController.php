@@ -72,10 +72,29 @@ class LentController extends Controller
         $modelLent = (new \yii\db\Query())->from('lent')->where('status=1');
         $sumLent = $modelLent->count('*');
 
+        // จำนวนพนักงาน
+        $employee = (new \yii\db\Query())->from('employee');
+        $total_employee = $employee->count('*');
+        
+        // จำนวนเครื่อง EDC
+        $modelEDC = (new \yii\db\Query())->from('edc')->where('status=2');
+        $total_Edc_fix = $modelEDC->count('*'); //จำนวนเครื่องที่ส่งซ่อม
+
         return $this->render('summary', [
             'lent' => $sumLent,
             'active' => $sumEDC,
+            'total_employee' => $total_employee,
+            'total_fix' => $total_Edc_fix,
         ]);
+    }
+
+    public function dashboardEmployee(){
+        if(!Yii::$app->user->can("lentEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+        
+        
+
+        
     }
 
     /**
