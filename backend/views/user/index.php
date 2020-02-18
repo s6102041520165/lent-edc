@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'ผู้ใช้';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -18,33 +18,39 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    <?php //echo $this->render('_search', ['model' => $searchModel]); 
     ?>
+    <div class="panel">
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <div class="panel-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
-            //'password_hash',
-            //'password_reset_token',
-            'email:email',
-            [
-                'attribute' => 'status',
-                'value' => function ($data) {
-                    return ($data->status == 10) ? "ใช้งานได้" : "ใช้งานไม่ได้";
-                }
-            ],
-            'created_at:relativeTime',
-            'updated_at:relativeTime',
-            //'verification_token',
+                    'id',
+                    'username',
+                    //'password_hash',
+                    //'password_reset_token',
+                    'email:email',
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($data) {
+                            return ($data->status == 10) ? "ใช้งานได้" : "ใช้งานไม่ได้";
+                        }
+                    ],
+                    //'verification_token',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {delete}',
+                    ]
+
+                ],
+            ]); ?>
+        </div>
+    </div>
 
     <?php Pjax::end(); ?>
 

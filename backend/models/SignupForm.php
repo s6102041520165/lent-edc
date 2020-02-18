@@ -45,6 +45,7 @@ class SignupForm extends Model
         return [
             'id' => 'รหัสอ้างอิง',
             'username' => 'ชื่อผู้ใช้',
+            'password' => 'รหัสผ่าน',
             'status' => 'สถานะ',
             'email' => 'อีเมล',
             'created_at' => 'เพิ่มเมื่อ',
