@@ -3,6 +3,7 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ResetPasswordForm */
 
+use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton(FA::icon('envelope').' ส่งอีเมล', ['class' => 'btn btn-primary']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
