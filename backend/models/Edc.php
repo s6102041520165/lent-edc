@@ -14,11 +14,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $serial_no
  * @property string|null $import_date
  * @property int|null $status
+ * @property int|null $district_id
  * @property int|null $created_at
  * @property int|null $created_by
  * @property int|null $updated_at
  * @property int|null $updated_by
  *
+ * @property District $district
  * @property Lent[] $lents
  */
 class Edc extends \yii\db\ActiveRecord
@@ -39,8 +41,9 @@ class Edc extends \yii\db\ActiveRecord
         return [
             ['status','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
             [['import_date'], 'safe'],
-            [['status', 'created_at', 'created_by', 'updated_at', 'updated_by','district_id'], 'integer'],
+            [['status', 'district_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['serial_no'], 'string', 'max' => 50],
+            [['district_id'], 'exist', 'skipOnError' => true, 'targetClass' => District::className(), 'targetAttribute' => ['district_id' => 'id']],
         ];
     }
 
@@ -62,14 +65,22 @@ class Edc extends \yii\db\ActiveRecord
         ];
     }
 
-    
-    
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
             BlameableBehavior::className(),
+            TimestampBehavior::className(),
         ];
+    }
+
+    /**
+     * Gets query for [[District]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDistrict()
+    {
+        return $this->hasOne(District::className(), ['id' => 'district_id']);
     }
 
     /**
@@ -82,16 +93,6 @@ class Edc extends \yii\db\ActiveRecord
         return $this->hasMany(Lent::className(), ['edc_id' => 'id']);
     }
 
-    public function getEmployee()
-    {
-        return $this->hasOne(Employee::className(), ['id' => 'employee_id']);
-    }
-
-    public function getDistrict()
-    {
-        return $this->hasOne(District::className(), ['id' => 'district_id']);
-    }
-
     public function getCreator()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
@@ -99,6 +100,6 @@ class Edc extends \yii\db\ActiveRecord
 
     public function getUpdator()
     {
-        return $this-> hasOne(User::className(), ['id'=> 'updated_by']);
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 }

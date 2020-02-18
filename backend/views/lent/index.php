@@ -31,35 +31,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <?php
-                echo ExportMenu::widget([
-                    'dataProvider' => $dataProvider,
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-                        ['label' => 'วันที่ยืม', 'attribute' => 'lent_date']
-                    ],
-                    'exportConfig' => [
-                        ExportMenu::FORMAT_TEXT => false,
-                        ExportMenu::FORMAT_HTML => false,
-                        ExportMenu::FORMAT_EXCEL => false,
-                        ExportMenu::FORMAT_PDF => [
-                            'pdfConfig' => [
-                                'methods' => [
-                                    'SetTitle' => 'Grid Export - Krajee.com',
-                                    'SetSubject' => 'Generating PDF files via yii2-export extension has never been easy',
-                                    'SetHeader' => ['Krajee Library Export||Generated On: ' . date("r")],
-                                    'SetFooter' => ['|Page {PAGENO}|'],
-                                    'SetAuthor' => 'Kartik Visweswaran',
-                                    'SetCreator' => 'Kartik Visweswaran',
-                                    'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, GridView, Grid, yii2-grid, yii2-mpdf, yii2-export',
-                                ]
+            echo ExportMenu::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    ['label' => 'วันที่ยืม', 'attribute' => 'lent_date']
+                ],
+                'exportConfig' => [
+                    ExportMenu::FORMAT_TEXT => false,
+                    ExportMenu::FORMAT_HTML => false,
+                    ExportMenu::FORMAT_EXCEL => false,
+                    ExportMenu::FORMAT_PDF => [
+                        'pdfConfig' => [
+                            'methods' => [
+                                'SetTitle' => 'Grid Export - Krajee.com',
+                                'SetSubject' => 'Generating PDF files via yii2-export extension has never been easy',
+                                'SetHeader' => ['Krajee Library Export||Generated On: ' . date("r")],
+                                'SetFooter' => ['|Page {PAGENO}|'],
+                                'SetAuthor' => 'Kartik Visweswaran',
+                                'SetCreator' => 'Kartik Visweswaran',
+                                'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, GridView, Grid, yii2-grid, yii2-mpdf, yii2-export',
                             ]
-                        ],
+                        ]
                     ],
-                    'dropdownOptions' => [
-                        'label' => 'Export All',
-                        'class' => 'btn btn-secondary'
-                    ]
-                ]);
+                ],
+                'dropdownOptions' => [
+                    'label' => 'Export All',
+                    'class' => 'btn btn-secondary'
+                ]
+            ]);
             ?>
             <?php echo GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -96,7 +96,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'updated_at',
                     //'updated_by',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete}',
+                        'buttons' => [
+                            'delete' => function ($url, $model) {
+                                return Html::a(FA::icon('trash'), $url, [
+                                    'data-confirm' => 'คุณต้องการลบรหัส ' . $model->id . ' ใช่หรือไม่?',
+                                    'data-method' => 'post',
+                                ]);
+                            }
+                        ],
+                    ],
                 ],
             ]); ?>
         </div>

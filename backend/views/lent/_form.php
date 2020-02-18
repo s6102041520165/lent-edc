@@ -20,7 +20,7 @@ use rmrevin\yii\fontawesome\FA;
     <div class="panel">
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <?= $form->field($model, 'lent_date')->widget(\yii\jui\DatePicker::classname(), [
                         'language' => 'th',
                         'dateFormat' => 'yyyy-MM-dd',
@@ -73,6 +73,24 @@ use rmrevin\yii\fontawesome\FA;
                     //         'allowClear' => true
                     //     ],
                     // ])
+                    ?>
+                </div>
+
+                <div class="col-lg-6">                    
+                    <?php
+                    $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
+                        return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                    });
+                    echo '<label class="control-label">พนักงาน</label>';
+                    echo Select2::widget([
+                        'model' => $model,
+                        'attribute' => 'employee_id',
+                        'data' => $data,
+                        'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
                     ?>
                 </div>
             </div>

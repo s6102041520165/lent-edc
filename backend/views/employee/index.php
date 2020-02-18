@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+use rmrevin\yii\fontawesome\FA;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EmployeeSearch */
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'ชื่อจริง - นามสกุล',
                         'attribute' => 'firstname',
                         'value' => function ($data) {
-                            return $data->firstname." ".$data->lastname;
+                            return $data->firstname . " " . $data->lastname;
                         }
                     ],
                     'line',

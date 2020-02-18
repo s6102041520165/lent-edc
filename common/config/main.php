@@ -33,8 +33,8 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 's6102041520165@email.kmutnb.com',
-                'password' => 'weerachai06',
+                'username' => 'clkeen157@gmail.com',
+                'password' => '0811383633',
                 'port' => '587',
                 'encryption' => 'tls',
             ],

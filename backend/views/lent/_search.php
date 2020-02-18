@@ -59,19 +59,21 @@ use rmrevin\yii\fontawesome\FA;
             <?php // $form->field($model, 'employee_id') 
             ?>
             <?php
-            $data = ArrayHelper::map(Employee::find()->all(), 'id', 'firstname');
-            // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-            echo '<label class="control-label">พนักงาน</label>';
-            echo Select2::widget([
-                'model' => $model,
-                'attribute' => 'employee_id',
-                'data' => $data,
-                'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
+                $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
+                    return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                });
+                echo '<label class="control-label">พนักงาน</label>';
+                echo Select2::widget([
+                    'model' => $model,
+                    'attribute' => 'employee_id',
+                    'data' => $data,
+                    'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);
             ?>
+            
         </div>
 
         <div class="col-lg-6">

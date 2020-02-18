@@ -1,14 +1,15 @@
 <?php
 
+use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdcSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Edcs';
+$this->title = 'เครื่อง EDC';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edc-index">
@@ -44,7 +45,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'updated_at',
                     //'updated_by',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'buttons' => [
+                            'delete' => function ($url, $model) {
+                                return Html::a(FA::icon('trash'), $url, [
+                                    'data-confirm' => 'คุณต้องการลบรหัส ' . $model->id . ' ใช่หรือไม่?',
+                                    'data-method' => 'post',
+                                ]);
+                            }
+                        ],
+                    ],
                 ],
             ]); ?>
         </div>
