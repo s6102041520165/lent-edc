@@ -32,7 +32,7 @@ use rmrevin\yii\fontawesome\FA;
                 
 
                 <div class="col-lg-6">
-                    <?= $form->field($model, 'status')->dropDownList(['2' => 'คืนเครื่องแล้ว', '1' => 'ยังไม่คืนเครื่อง'], ['prompt' => 'กรุณาเลือกสถานะ']) ?>
+                    <?= $form->field($model, 'status')->dropDownList($status) ?>
                 </div>
                 <div class="col-lg-6">                    
                     <?php

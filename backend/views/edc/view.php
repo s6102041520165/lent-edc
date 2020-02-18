@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 
                 [
-                    'label' => 'เขต กพส.',
+                    'label' => 'เขต พกส.',
                     'value' => function ($data) {
                         return $data->district_id;
                     },

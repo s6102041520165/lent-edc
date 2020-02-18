@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'status' => ['2' => 'คืนเครื่องแล้ว', '1' => 'ยังไม่คืนเครื่อง'], ['prompt' => 'กรุณาเลือกสถานะ']
     ]) ?>
 
 </div>

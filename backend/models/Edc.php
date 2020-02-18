@@ -37,6 +37,7 @@ class Edc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['district_id','required','message' => 'กรุณาป้อน {attribute}'],
             [['import_date'], 'safe'],
             [['status', 'created_at', 'created_by', 'updated_at', 'updated_by','district_id'], 'integer'],
             [['serial_no'], 'string', 'max' => 50],
