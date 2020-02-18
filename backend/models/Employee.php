@@ -42,7 +42,7 @@ class Employee extends \yii\db\ActiveRecord
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['rfid'], 'string', 'max' => 20],
             [['firstname', 'lastname', 'line'], 'string', 'max' => 50],
-            [['rfid'], 'unique'],
+            [['rfid'], 'unique','message' => '{attribute} ไม่สามารถเพิ่มได้ เนื่องจากพบ {value} ในฐานข้อมูล'],
         ];
     }
 

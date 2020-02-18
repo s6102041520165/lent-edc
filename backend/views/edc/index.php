@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\EdcSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Edcs';
+$this->title = 'เครื่อง EDC';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edc-index">
