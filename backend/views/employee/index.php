@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EmployeeSearch */
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'ชื่อจริง - นามสกุล',
                         'attribute' => 'firstname',
                         'value' => function ($data) {
-                            return $data->firstname." ".$data->lastname;
+                            return $data->firstname . " " . $data->lastname;
                         }
                     ],
                     'line',
@@ -45,7 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => (!Yii::$app->user->can('deleteEmployee'))? "{view} {update}": "{view} {update} {delete}",
+                        'template' => (!Yii::$app->user->can('deleteEmployee')) ? "{view} {update}" : "{view} {update} {delete}",
+                        'buttons' => [
+                            'delete' => function ($url, $model) {
+                                return Html::a(FA::icon('trash'), $url, [
+                                    'data-confirm' => 'คุณต้องการลบรหัส ' . $model->id . ' ใช่หรือไม่?',
+                                    'data-method' => 'post',
+                                ]);
+                            }
+                        ],
                     ],
                 ],
             ]); ?>

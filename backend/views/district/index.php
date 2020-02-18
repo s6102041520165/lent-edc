@@ -30,7 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'id',
                     'name',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'buttons' => [
+                            'delete' => function ($url, $model) {
+                                return Html::a(FA::icon('trash'), $url, [
+                                    'data-confirm' => 'คุณต้องการลบรหัส ' . $model->id . ' ใช่หรือไม่?',
+                                    'data-method' => 'post',
+                                ]);
+                            }
+                        ],
+                    ],
                 ],
             ]); ?>
         </div>
