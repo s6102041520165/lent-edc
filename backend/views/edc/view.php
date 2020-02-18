@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Edc */
 
-$this->title = $model->id;
+$this->title = $model->serial_no;
 $this->params['breadcrumbs'][] = ['label' => 'Edcs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -24,40 +24,44 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'serial_no',
-            'import_date:date',
-            [
-                'attribute' => 'status',
-                'value' => function ($data) {
-                    return ($data->status == 1) ? "ใช้งานได้" : "ส่งซ่อม";
-                }
+    <div class="panel">
+        <div class="panel-body">
+            <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'serial_no',
+                'import_date:date',
+                [
+                    'attribute' => 'status',
+                    'value' => function ($data) {
+                        return ($data->status == 1) ? "ใช้งานได้" : "ส่งซ่อม";
+                    }
+                ],
+                [
+                    'attribute' => 'district_id',
+                    'value'=>function($data){
+                        return $data->district['name'];
+                    }
+                ],
+                'created_at:relativeTime',
+                [
+                    'attribute' => 'created_by',
+                    'value'=>function($data){
+                        return $data->creator['username'];
+                    }
+                ],
+                'updated_at:relativeTime',
+                [
+                    'attribute' => 'updated_by',
+                    'value'=>function($data){
+                        return $data->updator['username'];
+                    }
+                ],
             ],
-            [
-                'attribute' => 'district_id',
-                'value'=>function($data){
-                    return $data->district['name'];
-                }
-            ],
-            'created_at:relativeTime',
-            [
-                'attribute' => 'created_by',
-                'value'=>function($data){
-                    return $data->creator['username'];
-                }
-            ],
-            'updated_at:relativeTime',
-            [
-                'attribute' => 'updated_by',
-                'value'=>function($data){
-                    return $data->updator['username'];
-                }
-            ],
-        ],
-    ]) ?>
+        ]) ?>
+        </div>
+    </div>
+    
 
 </div>

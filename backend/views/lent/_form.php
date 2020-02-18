@@ -51,12 +51,15 @@ use rmrevin\yii\fontawesome\FA;
 
                 <div class="col-lg-6">                    
                     <?php
-                    $rfid = ArrayHelper::map(Employee::find()->asArray()->all(), 'id', 'rfid');
-                    // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-                    echo $form->field($model, 'employee_id')->widget(Select2::className(), [
-                        'data' => $rfid,
-                        'language' => 'th',
-                        'options' => ['placeholder' => 'RFID'],
+                    $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
+                        return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                    });
+                    echo '<label class="control-label">พนักงาน</label>';
+                    echo Select2::widget([
+                        'model' => $model,
+                        'attribute' => 'employee_id',
+                        'data' => $data,
+                        'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
                         'pluginOptions' => [
                             'allowClear' => true
                         ],
