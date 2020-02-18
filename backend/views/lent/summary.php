@@ -35,8 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
         // นำจำนวน edc แต่ละเขตเก็บไว้ในตัวแปร Array $data_edc
         array_push($num_employee,$modelLent->count('*'));
     }
-    
-     echo "Monkey D Luffy ". $num_edc[1]; 
 ?>
 
 <div class="row">
