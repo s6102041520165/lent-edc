@@ -19,7 +19,7 @@ use yii\base\Model;
  * @property int $updated_at
  * @property string|null $verification_token
  */
-class User extends Model
+class UserProfile extends Model
 {
     public $username;
     public $new_password;

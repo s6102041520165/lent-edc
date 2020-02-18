@@ -36,19 +36,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@frontend/mail',
-            'useFileTransport' => false,
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'clkeen157@gmail.com',
-                'password' => '0811383633',
-                'port' => '587',
-                'encryption' => 'tls',
-            ],
-        ],
+        
 
         /*
         'urlManager' => [

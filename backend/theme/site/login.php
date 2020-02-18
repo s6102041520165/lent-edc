@@ -29,7 +29,7 @@ $fieldOptions2 = [
     <div class="login-box-body">
 
         <p class="login-box-msg">
-            <?= FA::icon('user')->size(FA::SIZE_5X); ?><br/>
+            <?= FA::icon('user')->size(FA::SIZE_5X); ?><br />
             เข้าสู่ระบบ
         </p>
 
@@ -45,6 +45,10 @@ $fieldOptions2 = [
             ->label(false)
             ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 
+        <div style="color:#999;margin:1em 0">
+            หากลืมรหัสผ่าน <?= Html::a('เปลี่ยนรหัสผ่าน', ['site/request-password-reset']) ?>.
+        </div>
+
         <div class="row">
             <div class="col-xs-8">
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
@@ -57,9 +61,10 @@ $fieldOptions2 = [
         </div>
 
 
+
         <?php ActiveForm::end(); ?>
 
-        <a href="#">ลืมรหัสผ่าน</a><br>
+        <a href="">ลืมรหัสผ่าน</a><br>
 
     </div>
     <!-- /.login-box-body -->
