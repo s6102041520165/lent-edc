@@ -13,13 +13,55 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
     integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
+<?php
+    // จำนวนเขตทั้งหมด = $total_district;
+    // จำนวนพนักงานทั้งหมด = $total_employee;
+    // จำนวนเครื่อง EDC ทั้งหมด = $total_edc;
+
+    // $data_edc = array()
+    // ตัวแปร b ไว้ใช้เรียกดึงค่าจาก Array ที่เขตต่าง ๆ 
+    $b=0;
+    
+    $num_edc=[];
+    $num_employee=[];
+    for($i=0;$i<$total_district;$i++){
+        $b=$i;
+        $modelLent = (new \yii\db\Query())->from('edc')->where('district_id='.strval($i+1));
+        // นำจำนวน edc แต่ละเขตเก็บไว้ในตัวแปร Array $data_edc
+        array_push($num_edc,$modelLent->count('*'));
+
+        $modelLent = (new \yii\db\Query())->from('employee')->where('district_id='.strval($i+1));
+        // นำจำนวน edc แต่ละเขตเก็บไว้ในตัวแปร Array $data_edc
+        array_push($num_employee,$modelLent->count('*'));
+    }
+    
+     echo "Monkey D Luffy ". $num_edc[1]; 
+?>
+
 <div class="row">
     <div class="col-lg-4">
         <div class="thumbnail">
             <div class="caption">
                 <p><i class="fa fa-user"></i>&nbsp; ข้อมูล</p>
-                <p>จำนวนพนักงานทั้งหมด <?php echo  $total_employee ?> คน</p>
-                <p>จำนวนเขตทั้งหมด <?php echo  $total_district ?> เขต</p>
+                <p style="margin-bottom:0px;">จำนวนเขตทั้งหมด <?php echo  $total_district ?> เขต</p>
+                <p style="margin-bottom:0px;">จำนวนพนักงานทั้งหมด <?php echo  $total_employee ?> คน</p>
+                <ul>
+                    <?php
+                    for($i=0;$i<$total_district;$i++){
+                        echo "<li>เขต " .strval($i+1) . " ( จำนวน " . $num_employee[$i] . " คน ) </li>";
+                    }
+                ?>
+                </ul>
+                <hr>
+                <p style="margin-bottom:0px;">จำนวนเครื่อง EDC ทั้งหมด <?php echo  $total_edc ?> เครื่อง</p>
+                <ul>
+                    <?php
+                    for($i=0;$i<$total_district;$i++){
+                        echo "<li>เขต " .strval($i+1) . " ( จำนวน " . $num_edc[$i] . " เครื่อง ) </li>";
+                    }
+                ?>
+                </ul>
             </div>
         </div>
     </div>
@@ -31,15 +73,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <span id="total_fix" style="display:none;"> <?php echo $total_fix . ""; ?> </span>
                 <span class="badge"></span>
                 <canvas id="myChart" width="400" height="400"></canvas>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <span class="badge" style="background-color:#ffce56;">จำนวนเครื่องที่ใช้งานได้
-                            <?php echo $lent; ?> </span>
-                    </div>
-                    <div class="col-lg-6">
-                        <span class="badge" style="background-color:#ff9f40;">จำนวนเครื่องที่กำลังซ่อม
-                            <?php echo $lent; ?> </span>
-                    </div>
+                <div class="container">
+                    <span class="badge" style="background-color:#ffce56;">จำนวนเครื่องที่ใช้งานได้
+                        <?php echo $active; ?> </span> &nbsp;
+                    <span class="badge" style="background-color:#ff9f40;">จำนวนเครื่องที่กำลังซ่อม
+                        <?php echo $total_fix; ?> </span>
                 </div>
 
 
@@ -48,15 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 var data2 = Number(document.getElementById('total_fix').innerHTML);
 
                 var total_edc = "จำนวนเครื่อง EDC ทั้งหมด " + (Number(data1) + Number(data2)) + " เครื่อง";
-                var min;
-                if (data1 > data2) {
-                    min = data2 - data1;
-                } else {
-                    min = data1 - data2;
-                }
-                console.log(min);
 
-                var ctx = document.getElementById('myChart');
                 var ctx = document.getElementById('myChart');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
@@ -97,11 +127,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption">
                 <p><i class="fa fa-book"></i>&nbsp; เครือง Edc เบิกจ่าย</p>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="container">
                         <span class="badge" style="background-color:#ffce56;">จำนวนเครื่องที่ยังไม่คืน
-                            <?php echo $lent; ?> </span>
-                    </div>
-                    <div class="col-lg-6">
+                            <?php echo $lent; ?> </span> &nbsp;
                         <span class="badge" style="background-color:#4bc0c0;">จำนวนเครื่องที่คืนแล้ว
                             <?php echo $total_rent; ?> </span>
                     </div>

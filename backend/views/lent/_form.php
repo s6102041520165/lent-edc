@@ -29,30 +29,33 @@ use rmrevin\yii\fontawesome\FA;
                         ]
                     ]) ?>
                 </div>
-                
+
 
                 <div class="col-lg-12">
-                    <?php // $form->field($model, 'employee_id') ?>
                     <?php
-                        $data = ArrayHelper::map(Employee::find()->all(),'id', 'firstname'); 
-                        echo $form->field($model, 'employee_id')->widget(Select2::classname(), [
-                            'data' => $data,
+                        $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
+                            return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                        });
+                        echo '<label class="control-label">พนักงาน</label>';
+                        echo Select2::widget([
+                            'model' => $model,
                             'attribute' => 'employee_id',
-                            'options' => ['placeholder' => 'Select a state ...'],
+                            'data' => $data,
+                            'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],
                         ]);
                     ?>
                 </div>
-               
+
                 <div class="col-lg-12">
                     <?= $form->field($model, 'status')->dropDownList($status)?>
                 </div>
                 <div class="col-lg-12">
                     <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) 
                     ?>
-                    
+
                     <?php
                     $data = ArrayHelper::map(Edc::find()->where(['status'=>'1'])->asArray()->all(), 'id', 'serial_no');
                     // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');

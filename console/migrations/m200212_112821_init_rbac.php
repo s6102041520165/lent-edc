@@ -79,7 +79,7 @@ class m200212_112821_init_rbac extends Migration
         $auth->add($employee);
         $auth->addChild($employee, $createEdc);
         $auth->addChild($employee, $editEdc);
-        $auth->addChild($employee, $deleteEdc);
+        
         $auth->addChild($employee, $viewEdc);
         $auth->addChild($employee, $lentEdc);
         $auth->addChild($employee, $viewDistrict);
@@ -91,6 +91,7 @@ class m200212_112821_init_rbac extends Migration
         // as well as the permissions of the "author" role
         $admin = $auth->createRole('admin');
         $auth->add($admin);
+        $auth->addChild($admin, $deleteEdc);
         $auth->addChild($admin, $deleteEmployee);
         $auth->addChild($admin, $deleteDistrict);
         $auth->addChild($admin, $editDistrict);

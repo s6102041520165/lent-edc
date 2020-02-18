@@ -85,8 +85,13 @@ class LentController extends Controller
         $modelLent = (new \yii\db\Query())->from('lent')->where('status=2');
         $total_rent = $modelLent->count('*');
 
+        // จำนวนเขต
         $modelLent = (new \yii\db\Query())->from('district');
         $total_district = $modelLent->count('*');
+
+        // จำนวนเครื่อง EDC
+        $modelLent = (new \yii\db\Query())->from('edc');
+        $total_edc = $modelLent->count('*');
 
         return $this->render('summary', [
             'lent' => $sumLent,
@@ -94,7 +99,8 @@ class LentController extends Controller
             'total_employee' => $total_employee,
             'total_fix' => $total_Edc_fix,
             'total_rent' => $total_rent,
-            'total_district'=> $total_district
+            'total_district'=> $total_district,
+            'total_edc' => $total_edc
         ]);
     }
 
