@@ -46,7 +46,7 @@ $fieldOptions2 = [
             ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 
         <div style="color:#999;margin:1em 0">
-            หากลืมรหัสผ่าน <?= Html::a('เปลี่ยนรหัสผ่าน', ['site/request-password-reset']) ?>.
+            <?= Html::a('ลืมรหัสผ่าน', ['site/request-password-reset']) ?>.
         </div>
 
         <div class="row">

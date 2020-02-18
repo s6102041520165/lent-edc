@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
+                        'template' => (Yii::$app->user->can('deleteEdc'))?'{view} {update} {delete}':'{view} {update}',
                         'buttons' => [
                             'delete' => function ($url, $model) {
                                 return Html::a(FA::icon('trash'), $url, [
