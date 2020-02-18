@@ -33,7 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'lent_date:date',
                 [
                     'label' => 'ชื่อจริง - นามสกุล',
-                    'attribute' => 'employee_id'
+                    'attribute' => function($data){
+                        return $data->employee['firstname'] . " " . $data->employee['lastname'];
+                    }
                 ],
                 ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
                 // status การยืม

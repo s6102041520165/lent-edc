@@ -37,6 +37,7 @@ use rmrevin\yii\fontawesome\FA;
                         $data = ArrayHelper::map(Employee::find()->all(),'id', 'firstname'); 
                         echo $form->field($model, 'employee_id')->widget(Select2::classname(), [
                             'data' => $data,
+                            'attribute' => 'employee_id',
                             'options' => ['placeholder' => 'Select a state ...'],
                             'pluginOptions' => [
                                 'allowClear' => true
@@ -73,24 +74,6 @@ use rmrevin\yii\fontawesome\FA;
                     //         'allowClear' => true
                     //     ],
                     // ])
-                    ?>
-                </div>
-
-                <div class="col-lg-6">                    
-                    <?php
-                    $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
-                        return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
-                    });
-                    echo '<label class="control-label">พนักงาน</label>';
-                    echo Select2::widget([
-                        'model' => $model,
-                        'attribute' => 'employee_id',
-                        'data' => $data,
-                        'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
                     ?>
                 </div>
             </div>
