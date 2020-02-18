@@ -23,13 +23,13 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?=Yii::getAlias('@web')?>/img/user.png" class="user-image" alt="User Image" />
+                        <img src="<?= Yii::getAlias('@web') ?>/img/man-light.png" class="user-image" alt="User Image" />
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?=Yii::getAlias('@web')?>/img/user.png" class="img-circle" alt="User Image" />
+                            <img src="<?= Yii::getAlias('@web') ?>/img/man-light.png" class="img-circle" alt="User Image" />
 
                             <p>
                                 <?= Yii::$app->user->identity->username; ?>
@@ -49,20 +49,34 @@ use yii\helpers\Html;
                         </li> -->
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <?= Html::a(
-                                    'เปลี่ยนรหัสผ่าน',
-                                    ['/site/profile'],
-                                    ['class' => 'btn btn-default btn-flat']
-                                ) ?>
-                            </div>
-                            <div class="pull-right">
-                                <?= Html::a(
-                                    'ออกจากระบบ',
-                                    ['/site/logout'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ) ?>
-                            </div>
+                            <?php if (!Yii::$app->user->isGuest) : ?>
+                                <div class="pull-left">
+                                    <?= Html::a(
+                                        'เปลี่ยนรหัสผ่าน',
+                                        ['/site/request-password-reset'],
+                                        ['class' => 'btn btn-default btn-flat']
+                                    ) ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!Yii::$app->user->isGuest) : ?>
+                                <div class="pull-right">
+                                    <?= Html::a(
+                                        'ออกจากระบบ',
+                                        ['/site/logout'],
+                                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                    ) ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (Yii::$app->user->isGuest) : ?>
+                                <div class="pull-right">
+                                    <?= Html::a(
+                                        'เข้าสู่ระบบ',
+                                        ['/site/logout'],
+                                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                    ) ?>
+                                </div>
+                            <?php endif; ?>
                         </li>
                     </ul>
                 </li>
