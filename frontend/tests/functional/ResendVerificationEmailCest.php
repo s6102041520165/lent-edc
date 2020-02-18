@@ -78,6 +78,6 @@ class ResendVerificationEmailCest
             'username' => 'test.test',
             'status' => \common\models\User::STATUS_INACTIVE
         ]);
-        $I->see('Check your email for further instructions.');
+        $I->see('กรุณาตรวจสอบข้อความในอีเมล');
     }
 }
