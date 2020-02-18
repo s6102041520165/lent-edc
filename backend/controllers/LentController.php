@@ -28,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'view', 'summary','delete'],
+                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -66,16 +66,51 @@ class LentController extends Controller
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
+            // จำนวนที่ยืม
         $modelEDC = (new \yii\db\Query())->from('edc')->where('status=1');
         $sumEDC = $modelEDC->count('*');
 
         $modelLent = (new \yii\db\Query())->from('lent')->where('status=1');
         $sumLent = $modelLent->count('*');
 
+        // จำนวนพนักงาน
+        $employee = (new \yii\db\Query())->from('employee');
+        $total_employee = $employee->count('*');
+        
+        // จำนวนเครื่อง EDC
+        $modelEDC = (new \yii\db\Query())->from('edc')->where('status=2');
+        $total_Edc_fix = $modelEDC->count('*'); //จำนวนเครื่องที่ส่งซ่อม
+
+        // จำนวนเครื่องที่ยืมยังไม่คืน
+        $modelLent = (new \yii\db\Query())->from('lent')->where('status=2');
+        $total_rent = $modelLent->count('*');
+
+        // จำนวนเขต
+        $modelLent = (new \yii\db\Query())->from('district');
+        $total_district = $modelLent->count('*');
+
+        // จำนวนเครื่อง EDC
+        $modelLent = (new \yii\db\Query())->from('edc');
+        $total_edc = $modelLent->count('*');
+
         return $this->render('summary', [
             'lent' => $sumLent,
             'active' => $sumEDC,
+            'total_employee' => $total_employee,
+            'total_fix' => $total_Edc_fix,
+            'total_rent' => $total_rent,
+            'total_district'=> $total_district,
+            'total_edc' => $total_edc
         ]);
+    }
+
+    public function dashboardEmployee(){
+        if(!Yii::$app->user->can("lentEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+        
+        
+
+        
     }
 
     /**

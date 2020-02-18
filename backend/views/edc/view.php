@@ -27,39 +27,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <?= DetailView::widget([
-            'model' => $model,
-            'attributes' => [
-                'id',
-                'serial_no',
-                'import_date:date',
-                [
-                    'attribute' => 'status',
-                    'value' => function ($data) {
-                        return ($data->status == 1) ? "ใช้งานได้" : "ส่งซ่อม";
-                    }
-                ],
-                [
-                    'attribute' => 'district_id',
-                    'value'=>function($data){
-                        return $data->district['name'];
-                    }
-                ],
-                'created_at:relativeTime',
-                [
-                    'attribute' => 'created_by',
-                    'value'=>function($data){
-                        return $data->creator['username'];
-                    }
-                ],
-                'updated_at:relativeTime',
-                [
-                    'attribute' => 'updated_by',
-                    'value'=>function($data){
-                        return $data->updator['username'];
-                    }
-                ],
-            ],
-        ]) ?>
+                'model' => $model,
+                'attributes' => [
+                    'id',
+
+                    'serial_no',
+                    'import_date:date',
+                    // status ของเครื่อง EDC
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($data) {
+                            if ($data->status == 1) {
+                                return 'สามารถยืมได้';
+                            } else if ($data->status == 2) {
+                                return 'เครื่องส่งซ่อม';
+                            }
+                        },
+                    ],
+                    [
+                        'label' => 'เขต กพส.',
+                        'attribute' => 'district.name'
+                    ],
+                    // ส่วนแสดงอัพเดทแก้ไขเมื่อ
+                    'created_at:datetime',
+                    [
+                        'attribute' => 'created_by',
+                        'value' => function ($data) {
+                            return $data->creator['username'];
+                        },
+                    ],
+                ]
+            ]); ?>
         </div>
     </div>
     

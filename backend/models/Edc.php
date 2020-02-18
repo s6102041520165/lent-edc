@@ -39,6 +39,7 @@ class Edc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['status','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
             [['import_date'], 'safe'],
             [['status', 'district_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['serial_no'], 'string', 'max' => 50],
@@ -77,10 +78,6 @@ class Edc extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDistrict()
-    {
-        return $this->hasOne(District::className(), ['id' => 'district_id']);
-    }
 
     /**
      * Gets query for [[Lents]].
@@ -90,6 +87,11 @@ class Edc extends \yii\db\ActiveRecord
     public function getLents()
     {
         return $this->hasMany(Lent::className(), ['edc_id' => 'id']);
+    }
+
+    public function getDistrict()
+    {
+        return $this->hasOne(District::className(), ['id' => 'district_id']);
     }
 
     public function getCreator()

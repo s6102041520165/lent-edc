@@ -29,14 +29,35 @@ use rmrevin\yii\fontawesome\FA;
                         ]
                     ]) ?>
                 </div>
-                
 
-                <div class="col-lg-6">
-                    <?= $form->field($model, 'status')->dropDownList($status) ?>
-                </div>
-                <div class="col-lg-6">                    
+
+                <div class="col-lg-12">
                     <?php
-                    $data = ArrayHelper::map(Edc::find()->asArray()->all(), 'id', 'serial_no');
+                        $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
+                            return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                        });
+                        echo '<label class="control-label">พนักงาน</label>';
+                        echo Select2::widget([
+                            'model' => $model,
+                            'attribute' => 'employee_id',
+                            'data' => $data,
+                            'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);
+                    ?>
+                </div>
+
+                <div class="col-lg-12">
+                    <?= $form->field($model, 'status')->dropDownList($status)?>
+                </div>
+                <div class="col-lg-12">
+                    <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) 
+                    ?>
+
+                    <?php
+                    $data = ArrayHelper::map(Edc::find()->where(['status'=>'1'])->asArray()->all(), 'id', 'serial_no');
                     // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
                     echo $form->field($model, 'edc_id')->widget(Select2::className(), [
                         'data' => $data,
@@ -46,24 +67,16 @@ use rmrevin\yii\fontawesome\FA;
                             'allowClear' => true
                         ],
                     ]);
-                    ?>
-                </div>
 
-                <div class="col-lg-6">                    
-                    <?php
-                    $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
-                        return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
-                    });
-                    echo '<label class="control-label">พนักงาน</label>';
-                    echo Select2::widget([
-                        'model' => $model,
-                        'attribute' => 'employee_id',
-                        'data' => $data,
-                        'options' => ['placeholder' => 'กรุณาเลือกพนักงาน'],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
+                    // echo Select2::widget([
+                    //     'name' => 'edc_id',
+                    //     'data' => $data,
+                    //     'size' => Select2::SMALL,
+                    //     'options' => ['placeholder' => 'Select a state ...'],
+                    //     'pluginOptions' => [
+                    //         'allowClear' => true
+                    //     ],
+                    // ])
                     ?>
                 </div>
             </div>

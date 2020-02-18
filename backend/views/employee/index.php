@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'line',
+                    'district.name',
                     'created_at:relativeTime',
                     //'created_by',
                     //'updated_at',
@@ -46,15 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => (!Yii::$app->user->can('deleteEmployee')) ? "{view} {update}" : "{view} {update} {delete}",
-                        'buttons' => [
-                            'delete' => function ($url, $model) {
-                                return Html::a(FA::icon('trash'), $url, [
-                                    'data-confirm' => 'คุณต้องการลบรหัส ' . $model->id . ' ใช่หรือไม่?',
-                                    'data-method' => 'post',
-                                ]);
-                            }
-                        ],
+                        'template' => (Yii::$app->user->can('deleteEmployee'))? "{view} {update}": "{view} {update} {delete}",
                     ],
                 ],
             ]); ?>

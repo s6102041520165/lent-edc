@@ -40,7 +40,6 @@ use kartik\select2\Select2;
                 ],
             ]);
             ?>
-      
 
         <?php //$dataList = ArrayHelper::map(\backend\models\EdcSearch::find()->all(),'id','') ?>
 
