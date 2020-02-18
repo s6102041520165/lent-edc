@@ -27,7 +27,7 @@ class EdcController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'view','print','delete'],
+                        'actions' => ['create', 'index', 'update', 'view', 'print', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -145,7 +145,7 @@ class EdcController extends Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
             'destination' => Pdf::DEST_BROWSER,
-            'content' => $this->renderPartial('_print'),
+            'content' => $this->renderPartial('_print', ['model' => $model]),
             'options' => [
                 // any mpdf options you wish to set
             ],
