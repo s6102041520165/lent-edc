@@ -10,7 +10,6 @@ $this->title = 'Resend verification email';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-resend-verification-email">
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>กรุณาป้อนอีเมล. ระบบจะส่งลิงค์ยืนยันตัวตนให้ท่าน.</p>
 

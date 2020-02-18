@@ -11,7 +11,6 @@ $this->title = 'Request password reset';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>กรุณากรอกอีเมลที่ต้องการส่งเมลเพื่อเปลี่ยนรหัสผ่าน</p>
 
