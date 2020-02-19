@@ -39,8 +39,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; <?=date('Y')?> <a href="http://almsaeedstudio.com">TCT-28 Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; <?=date('Y')?> <a href="http://almsaeedstudio.com">TCT-28 Studio</a>.</strong> by <u>ชอบเค็มเค็ม</u>
 </footer>
 
 <!-- Control Sidebar -->

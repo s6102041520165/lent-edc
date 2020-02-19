@@ -25,6 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'password')->passwordInput() ?>
 
+                    <?=$form->field($model,'role')->dropDownList(
+                        ['employee' => 'Employee', 'admin' => 'Admin',['prompt' => 'กรุณาเลือกสิทธิผู้ใช้']]
+                    );?>
+
                     <div class="form-group">
                         <?= Html::submitButton(FA::icon('user-plus') . ' เพิ่มผู้ใช้', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                     </div>

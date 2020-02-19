@@ -16,6 +16,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $role;
 
 
     /**
@@ -23,7 +24,9 @@ class SignupForm extends Model
      */
     public function rules()
     {
+        
         return [
+            ['role','required','message'=> '{attribute} ต้องไม่เป็นค่าว่าง'],
             ['username', 'trim'],
             ['username', 'required', 'message' => '{attribute} ต้องไม่เป็นค่าว่าง'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'ไม่สามาถใช้ {attribute} {value} ได้'],
@@ -76,7 +79,7 @@ class SignupForm extends Model
         $user->save();
         // the following three lines were added:
         $auth = Yii::$app->authManager;
-        $authorRole = $auth->getRole('employee');
+        $authorRole = $auth->getRole($this->role);
         $auth->assign($authorRole, $user->getId());
         return $user;
     }
