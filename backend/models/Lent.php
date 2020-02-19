@@ -99,7 +99,7 @@ class Lent extends \yii\db\ActiveRecord
     public function getCreator()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
-    }
+    } 
 
     public function getUpdator()
     {
