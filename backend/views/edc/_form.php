@@ -25,7 +25,6 @@ use kartik\select2\Select2;
         ]) ?>
         <?php //  $form->field($model, 'import_date')->textInput() ?>
 
-        <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
 
 
         <?php
@@ -56,6 +55,7 @@ use kartik\select2\Select2;
 
             <?php // $form->field($model, 'updated_by')->textInput() 
             ?>
+                    <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
