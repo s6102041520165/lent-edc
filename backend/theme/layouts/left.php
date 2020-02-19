@@ -5,7 +5,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?=Yii::getAlias('@web')?>/img/user.png" class="img-circle" alt="User Image" />
+                <img src="<?=Yii::getAlias('@web')?>/img/man.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
                 <p><?= Yii::$app->user->identity->username; ?></p>
@@ -35,8 +35,9 @@
                     ['label' => 'พนักงาน ขสมก.', 'icon' => 'users', 'url' => ['/employee'], 'visible' => (Yii::$app->user->can("viewEmployee")) ? true : false],
                     ['label' => 'เครื่อง EDC', 'icon' => 'credit-card', 'url' => ['/edc'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
                     ['label' => 'การยืมคืนเครื่อง EDC', 'icon' => 'list-ul', 'url' => ['/lent'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
-                    ['label' => 'สรุปข้อมูลยืมคืนเครื่อง', 'icon' => 'area-chart', 'url' => ['/lent/summary'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
                     ['label' => 'เขต พกส.', 'icon' => 'map-marker', 'url' => ['/district'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
+                    ['label' => 'ผู้ใช้', 'icon' => 'users', 'url' => ['/user'], 'visible' => (Yii::$app->user->can("createUser")) ? true : false],
+                    ['label' => 'สรุปข้อมูลยืมคืนเครื่อง', 'icon' => 'area-chart', 'url' => ['/lent/summary'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [

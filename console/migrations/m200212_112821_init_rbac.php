@@ -74,6 +74,10 @@ class m200212_112821_init_rbac extends Migration
         $lentEdc->description = 'Lent a Edc';
         $auth->add($lentEdc);
 
+        $createUser = $auth->createPermission('createUser');
+        $createUser->description = 'Create a user';
+        $auth->add($createUser);
+
         // add "employee" role and give this role the "createEmployee" permission
         $employee = $auth->createRole('employee');
         $auth->add($employee);
@@ -92,6 +96,7 @@ class m200212_112821_init_rbac extends Migration
         $admin = $auth->createRole('admin');
         $auth->add($admin);
         $auth->addChild($admin, $deleteEdc);
+        $auth->addChild($admin, $createUser);
         $auth->addChild($admin, $deleteEmployee);
         $auth->addChild($admin, $deleteDistrict);
         $auth->addChild($admin, $editDistrict);

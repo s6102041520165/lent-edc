@@ -12,34 +12,36 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
+    <div class="panel">
+        <div class="panel-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <p>
+                <?= Html::a('ลบข้อมูล', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'คุณต้องการลบข้อมูลใช่หรือไม่?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-            'status',
-            'created_at',
-            'updated_at',
-            'verification_token',
-        ],
-    ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'username',
+                    //'auth_key',
+                    //'password_hash',
+                    //'password_reset_token',
+                    'email:email',
+                    //'status',
+                    'created_at:relativeTime',
+                    'updated_at:relativeTime',
+                    //'verification_token',
+                ],
+            ]) ?>
+        </div>
+    </div>
 
 </div>

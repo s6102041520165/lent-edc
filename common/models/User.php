@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -109,7 +110,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -176,6 +178,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function setPassword($password)
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'รหัสอ้างอิง',
+            'username' => 'ชื่อผู้ใช้',
+            'password_hash' => 'รหัสผ่าน',
+            'status' => 'สถานะ',
+            'email' => 'อีเมล',
+            'created_at' => 'เพิ่มเมื่อ',
+            'updated_at' => 'แก้ไขเมื่อ'
+        ];
     }
 
     /**
