@@ -28,7 +28,7 @@ use kartik\select2\Select2;
         </div>
         <div class="col-lg-6">
             <label class="control-label">
-                เขต กพส.
+                เขต พกส.
             </label>
             <?php
             $data = ArrayHelper::map(District::find()->asArray()->all(),'id', 'name'); 

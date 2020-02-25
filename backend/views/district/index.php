@@ -9,13 +9,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\DistrictSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'เขต กพส.';
+$this->title = 'เขต พกส.';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="district-index">
 
     <p>
-        <?= Html::a('เพิ่มเขต กพส.', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มเขต พกส.', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin() ?>

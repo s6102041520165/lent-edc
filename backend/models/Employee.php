@@ -58,7 +58,7 @@ class Employee extends \yii\db\ActiveRecord
             'firstname' => 'ชื่อ',
             'lastname' => 'นามสกุล',
             'line' => 'สายการเดินรถ',
-            'district_id' => 'เขต กพส.',
+            'district_id' => 'เขต พกส.',
             'created_at' => 'เพิ่มเมื่อ',
             'created_by' => 'เพิ่มโดย',
             'updated_at' => 'แก้ไขเมื่อ',

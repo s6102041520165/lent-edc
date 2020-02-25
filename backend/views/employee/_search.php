@@ -29,12 +29,12 @@ use yii\helpers\ArrayHelper;
             <?php
                 // $data = ArrayHelper::map(District::find()->all(), 'id', 'name');
                 // // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
-                // echo '<label class="control-label">เขต กพส.</label>';
+                // echo '<label class="control-label">เขต พกส.</label>';
                 // echo Select2::widget([
                 //     'model' => $model,
                 //     'attribute' => 'district_id',
                 //     'data' => $data,
-                //     'options' => ['placeholder' => 'กรุณาเลือกเขต กพส.'],
+                //     'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
                 //     'pluginOptions' => [
                 //         'allowClear' => true
                 //     ],

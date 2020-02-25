@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\District */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'เขต กพส.', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'เขต พกส.', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
