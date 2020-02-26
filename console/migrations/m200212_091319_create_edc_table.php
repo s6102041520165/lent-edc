@@ -19,6 +19,7 @@ class m200212_091319_create_edc_table extends Migration
             'status' => $this->integer(),
             
             'district_id'=>$this->integer(),
+            'division_id' => $this->integer(),
             
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
@@ -26,7 +27,15 @@ class m200212_091319_create_edc_table extends Migration
             'updated_by' => $this->integer()
         ]);
 
-        $this->addForeignKey('FK_EDC_DISTRICT','{{%edc}}','[[district_id]]','{{district}}','[[id]]');
+        $this->addForeignKey(
+            'fk_composite_edc_district',
+            '{{%edc}}',
+            ['district_id', 'division_id'],
+            '{{%district}}',
+            ['id', 'division'],
+            'CASCADE',
+            'CASCADE'
+        );
     }
 
     /**

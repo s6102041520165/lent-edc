@@ -29,12 +29,12 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['signup','index'],
+                        'actions' => ['signup','index','document'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','index'],
+                        'actions' => ['logout','index','document'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -153,6 +153,16 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDocument() {
+    
+        // This will need to be the path relative to the root of your app.
+        $filePath = '/document';
+        // Might need to change '@app' for another alias
+        $storagePath = Yii::getAlias('@app/files');
+    
+        return Yii::$app->response->sendFile("$storagePath/document/document.pdf", 'document.pdf',['inline'=>true]);
     }
 
     /**
