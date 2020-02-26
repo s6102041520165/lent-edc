@@ -28,13 +28,21 @@ class m200212_091307_create_employee_table extends Migration
         ]);
 
         $this->addForeignKey(
-            'fk_composite_employee_district',
+            'fk_employee_district',
             '{{%employee}}',
-            ['district_id', 'division_id'],
+            'district_id',
             '{{%district}}',
-            ['id', 'division'],
+            'id',
             'CASCADE',
-            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_employee_division',
+            '{{%employee}}',
+            'division_id',
+            '{{%division}}',
+            'id',
+            'CASCADE',
         );
     }
 

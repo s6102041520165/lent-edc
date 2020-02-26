@@ -5,14 +5,14 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%district}}`.
  */
-class m200212_091305_create_district_table extends Migration
+class m200212_091306_create_division_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%district}}', [
+        $this->createTable('{{%division}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(100)->notNull(),
             //'name' => $this->string(255)
@@ -24,6 +24,6 @@ class m200212_091305_create_district_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%district}}');
+        $this->dropTable('{{%division}}');
     }
 }

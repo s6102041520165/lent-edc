@@ -28,13 +28,21 @@ class m200212_091319_create_edc_table extends Migration
         ]);
 
         $this->addForeignKey(
-            'fk_composite_edc_district',
+            'fk_edc_district',
             '{{%edc}}',
-            ['district_id', 'division_id'],
+            'district_id',
             '{{%district}}',
-            ['id', 'division'],
+            'id',
             'CASCADE',
-            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk_edc_division',
+            '{{%edc}}',
+            'division_id',
+            '{{%division}}',
+            'id',
+            'CASCADE',
         );
     }
 
