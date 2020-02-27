@@ -10,6 +10,8 @@ use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model app\models\Edc */
 /* @var $form yii\widgets\ActiveForm */
+$date2=date("yy-m-d");
+
 ?>
 
 <div class="edc-form">
@@ -22,9 +24,11 @@ use kartik\select2\Select2;
                     <?= $form->field($model, 'import_date')->widget(\yii\jui\DatePicker::classname(), [
                         'language' => 'th',
                         'dateFormat' => 'yyyy-MM-dd',
+                        'clientOptions' => ['defaultDate' => date('yy-m-d')]  ,
+                        'value' => $date2,
                         'options' => [
                             'class' => 'form-control'
-                        ]
+                        ],
                     ]) ?>
                 </div>
                 <div class="col-lg-6">
@@ -47,6 +51,7 @@ use kartik\select2\Select2;
                     <?= '<label class="control-label">กอง</label>'; ?>
                     <?php
                     $data = ArrayHelper::map(Division::find()->asArray()->all(), 'id', 'name');
+                    // $data = ArrayHelper::multisort($data, ['name'], [SORT_ASC]);
                     echo Select2::widget([
                         'model' => $model,
                         'attribute' => 'division_id',
@@ -61,7 +66,7 @@ use kartik\select2\Select2;
 
                 <div class="col-lg-6">
 
-                    <?= $form->field($model, 'status')->dropDownList(['1' => 'ใช้งานได้', '2' => 'ส่งซ่อม'], ['prompt' => 'กรุณาเลือกสถานะ']) ?>
+                    <?= $form->field($model, 'status')->dropDownList(['1' => 'ใช้งานได้', '2' => 'ส่งซ่อม']) ?>
                 </div>
                 <?php // $form->field($model, 'created_at')->textInput() 
                 ?>
@@ -75,7 +80,10 @@ use kartik\select2\Select2;
                 <?php // $form->field($model, 'updated_by')->textInput() 
                 ?>
                 <div class="col-lg-6">
-                    <?= $form->field($model, 'serial_no')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'serial_no')->textInput([
+                        'maxlength' => true,
+                        // 'value' => 'xxx'
+                        ]) ?>
                 </div>
                 <div class="col-lg-12">
                     <div class="form-group">
