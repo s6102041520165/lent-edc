@@ -24,7 +24,8 @@ class m200212_091307_create_employee_table extends Migration
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
-            'updated_by' => $this->integer()
+            'updated_by' => $this->integer(),
+            'status' => $this->integer()->defaultValue(1),
         ]);
 
         $this->addForeignKey(

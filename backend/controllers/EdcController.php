@@ -131,7 +131,9 @@ class EdcController extends Controller
     {
         if (!Yii::$app->user->can("deleteEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->status = 0;
+        $model->save();
 
         return $this->redirect(['index']);
     }

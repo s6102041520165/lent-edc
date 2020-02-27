@@ -15,6 +15,7 @@ class m200212_091305_create_district_table extends Migration
         $this->createTable('{{%district}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(100)->notNull(),
+            'status' => $this->integer()->defaultValue(1),
             //'name' => $this->string(255)
         ]);
     }

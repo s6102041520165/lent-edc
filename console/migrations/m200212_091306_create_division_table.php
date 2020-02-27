@@ -15,6 +15,7 @@ class m200212_091306_create_division_table extends Migration
         $this->createTable('{{%division}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(100)->notNull(),
+            'status' => $this->integer()->defaultValue(1),
             //'name' => $this->string(255)
         ]);
     }

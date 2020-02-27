@@ -40,7 +40,7 @@ class EdcSearch extends Edc
      */
     public function search($params)
     {
-        $query = Edc::find();
+        $query = Edc::find()->where(['<>', 'status', '0']);
 
         // add conditions that should always apply here
 
