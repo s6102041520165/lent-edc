@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lent */
 
-$this->title = Yii::$app->formatter->format($model->lent_date, 'date');
+$this->title = Yii::$app->formatter->format($model->created_at, 'datetime');
 $this->params['breadcrumbs'][] = ['label' => 'ระบบเบิกจ่ายเครื่อง EDC', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->lent_date]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->created_at]];
+$this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="lent-update">
 
