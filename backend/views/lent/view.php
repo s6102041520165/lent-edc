@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'id',
                     [
                         'label' => 'ชื่อจริง - นามสกุล',
-                        'attribute' => function ($data) {
+                        'attribute' => 'employee_id',
+                        'value' => function ($data) {
                             return $data->employee['firstname'] . " " . $data->employee['lastname'];
                         }
                     ],

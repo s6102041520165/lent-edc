@@ -82,13 +82,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'id',
                     'created_at:date',
                     // ชื่อพนักงาน ยืมคืน
-                    [
+                    /*[
                         'label' => 'ชื่อจริง - นามสกุล',
-                        'attribute' => 'firstname',
+                        'attribute' => 'employee_id',
                         'value' => function ($data) {
                             return $data->employee['firstname'] . " " . $data->employee['lastname'];
                         }
-                    ],
+                    ],*/
                     ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
                     // status การยืม
                     [

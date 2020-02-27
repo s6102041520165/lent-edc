@@ -176,23 +176,26 @@ class LentController extends Controller
     {
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+        $modelReturn = new Lent();
 
-        $model = new Lent();
+        //$modelReturn = $this->findmodelReturn($id);
 
-        //$model = $this->findModel($id);
+        if ($modelReturn->load(Yii::$app->request->post())) {
+            $searchmodelReturn = Lent::find()->where(['edc_id' => $modelReturn->edc_id, 'status' => 1])->one();
+            $id = $searchmodelReturn->id;
+            //var_dump($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $date = null;
-            if ($model->status == 2) {
-                $model->setAttribute('return_date', $model->created_at);
-            }
+            $model = $this->findModel($id);
+
+            $model->setAttribute('return_date', time());
+            $model->setAttribute('status', 2);
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
 
         return $this->render('return', [
-            'model' => $model,
+            'modelReturn' => $modelReturn,
         ]);
     }
 

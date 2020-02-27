@@ -22,15 +22,16 @@ $this->params['breadcrumbs'][] = 'คืนเครื่อง EDC';
 
                 <div class="col-lg-12">
                     <?php $data = ArrayHelper::map(Edc::find()->asArray()->all(), 'id', 'serial_no') ?>
-                    <?= $form->field($model, 'edc_id')->textInput(['maxLenght' => true, 'autofocus' => true]) ?>
-                    <?php /*echo $form->field($model, 'edc_id')->widget(Select2::className(), [
+                    <?php //echo $form->field($model, 'edc_id')->textInput(['maxLenght' => true, 'autofocus' => true]) ?>
+                    <?php echo $form->field($modelReturn, 'status')->hiddenInput(['value' => 2])->label(false) ?>
+                    <?php echo $form->field($modelReturn, 'edc_id')->widget(Select2::className(), [
                         'data' => $data,
                         'language' => 'en',
-                        'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.', 'autofocus' => true],
+                        'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
                         'pluginOptions' => [
                             'allowClear' => true
                         ],
-                    ]) */ ?>
+                    ])?>
                 </div>
 
             </div>
