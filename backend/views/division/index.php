@@ -7,32 +7,39 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\DivisionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Divisions';
+$this->title = 'กอง';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="division-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Division', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มกอง', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="panel">
+        <div class="panel-body">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-body">
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
+                    'id',
+                    'name',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 
     <?php Pjax::end(); ?>
 

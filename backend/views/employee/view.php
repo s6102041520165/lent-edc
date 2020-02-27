@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'firstname',
                     'lastname',
                     'line',
-                    'rfid',
                     'district.name',
                     // ส่วนแสดงอัพเดทแก้ไขเมื่อ
                     'created_at:date',

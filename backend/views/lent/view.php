@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lent */
 
-$this->title = Yii::$app->formatter->format($model->lent_date, 'date');
+$this->title = Yii::$app->formatter->format($model->created_by, 'date');
 $this->params['breadcrumbs'][] = ['label' => 'ระบบเบิกจ่ายเครื่อง EDC', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=Html::a('ลบข้อมูล', ['delete', 'id' => $model->id], [
     'class' => 'btn btn-danger',
     'data' => [
-        'confirm' => 'Are you sure you want to delete this item?',
+        'confirm' => 'คุณต้องการลบข้อมูลใช่หรือไม่ ?',
         'method' => 'post',
     ],
 ])?>
@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 // 'id',
-                'lent_date:date',
                 [
                     'label' => 'ชื่อจริง - นามสกุล',
                     'attribute' => function($data){

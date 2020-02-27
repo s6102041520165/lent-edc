@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 use app\models\District;
+use app\models\Division;
 use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
@@ -23,10 +24,8 @@ use kartik\select2\Select2;
         <div class="col-lg-6">
             <?= $form->field($model, 'line')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-lg-6">
-            <?= $form->field($model, 'rfid')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-lg-6">
+        
+        <div class="col-lg-3">
             <label class="control-label">
                 เขต พกส.
             </label>
@@ -37,6 +36,24 @@ use kartik\select2\Select2;
                 'attribute' => 'district_id',
                 'data' => $data,
                 'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
+        </div>
+
+        <div class="col-lg-3">
+            <label class="control-label">
+                กอง
+            </label>
+            <?php
+            $dataDivision = ArrayHelper::map(Division::find()->asArray()->all(),'id', 'name'); 
+            echo Select2::widget([
+                'model' => $model,
+                'attribute' => 'division_id',
+                'data' => $dataDivision,
+                'options' => ['placeholder' => 'กอง'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],

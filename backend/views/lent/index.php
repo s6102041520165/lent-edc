@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    ['label' => 'วันที่ยืม', 'attribute' => 'lent_date'],
+                    //['label' => 'วันที่ยืม', 'attribute' => 'lent_date'],
                     'return_date:date',
                     [
                         'attribute' => 'status',
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     // 'id',
-                    'lent_date:date',
+                    'created_at:date',
                     // ชื่อพนักงาน ยืมคืน
                     [
                         'label' => 'ชื่อจริง - นามสกุล',

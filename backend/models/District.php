@@ -41,7 +41,7 @@ class District extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัสอ้างอิง',
-            'name' => 'เขต',
+            'name' => 'เขต พกส.',
         ];
     }
 

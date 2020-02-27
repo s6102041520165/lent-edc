@@ -41,7 +41,7 @@ class Lent extends \yii\db\ActiveRecord
     {
         return [
             ['edc_id', 'required','message'=>'กรุณากรอกข้อมูล {attribute}'],
-            [['lent_date', 'return_date'], 'safe'],
+            //[['lent_date', 'return_date'], 'safe'],
             [['employee_id', 'edc_id', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['edc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Edc::className(), 'targetAttribute' => ['edc_id' => 'id']],
             [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
@@ -55,7 +55,7 @@ class Lent extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัสอ้างอิงการยืม',
-            'lent_date' => 'วันที่เบิก',
+            //'lent_date' => 'วันที่เบิก',
             'employee_id' => 'พนักงาน',
             // ['label'=>'ผู้ถือกรรมสิทธิ์,'attribute'=>'ownership.name'],
             'edc_id' => 'เครื่อง EDC',

@@ -18,7 +18,7 @@ class LentSearch extends Lent
     {
         return [
             [['id', 'employee_id', 'edc_id', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['lent_date', 'return_date'], 'safe'],
+            [['return_date'], 'safe'],
         ];
     }
 
@@ -59,7 +59,6 @@ class LentSearch extends Lent
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lent_date' => $this->lent_date,
             'employee_id' => $this->employee_id,
             'edc_id' => $this->edc_id,
             'status' => $this->status,
