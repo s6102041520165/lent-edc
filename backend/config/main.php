@@ -12,11 +12,13 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'language' => 'th',
     'modules' => [
         'gridview' =>  [
             'class' => '\kartik\grid\Module',
         ],
     ],
+    'timeZone' => 'Asia/Bangkok',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

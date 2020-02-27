@@ -49,17 +49,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         },
                     ],
-                    'return_date:datetime',
+                    'return_date:relativeTime',
 
                     // ส่วนอัพเดทแก้ไขเมื่อ
-                    'created_at:datetime',
+                    'created_at:relativeTime',
                     [
                         'attribute' => 'created_by',
                         'value' => function ($data) {
                             return $data->creator['username'];
                         },
                     ],
-                    'updated_at:datetime',
+                    'updated_at:relativeTime',
                     [
                         'attribute' => 'updated_by',
                         'value' => function ($data) {

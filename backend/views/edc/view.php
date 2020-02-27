@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'division.name'
                     ],
                     // ส่วนแสดงอัพเดทแก้ไขเมื่อ
-                    'created_at:datetime',
+                    'created_at:relativeTime',
                     [
                         'attribute' => 'created_by',
                         'value' => function ($data) {

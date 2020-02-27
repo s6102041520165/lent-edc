@@ -61,7 +61,7 @@ class Lent extends \yii\db\ActiveRecord
             'edc_id' => 'เครื่อง EDC',
             'status' => 'สถานะการยืมคืน',
             'return_date' => 'วันที่คืน',
-            'created_at' => 'เพิ่มข้อมูลเมื่อ',
+            'created_at' => 'วันที่เบิก',
             'created_by' => 'เพิ่มข้อมูลโดย',
             'updated_at' => 'แก้ไขข้อมูลเมื่อ',
             'updated_by' => 'แก้ไขข้อมูลโดย',
