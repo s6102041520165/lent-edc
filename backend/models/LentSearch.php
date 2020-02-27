@@ -40,12 +40,13 @@ class LentSearch extends Lent
      */
     public function search($params)
     {
-        $query = Lent::find();
+        $query = Lent::find()->where(['<>', 'status', '0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+'pagination' => [ 'pageSize' => 15 ],
         ]);
 
         $this->load($params);

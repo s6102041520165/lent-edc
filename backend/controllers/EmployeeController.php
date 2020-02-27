@@ -5,6 +5,9 @@ namespace backend\controllers;
 use Yii;
 use app\models\Employee;
 use backend\models\EmployeeSearch;
+use kartik\mpdf\Pdf;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -26,7 +29,7 @@ class EmployeeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index','update','view','delete'],
+                        'actions' => ['create', 'index', 'update', 'view', 'delete', 'barcode'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -47,9 +50,9 @@ class EmployeeController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->can("viewEmployee"))
+        if (!Yii::$app->user->can("viewEmployee"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-            
+
         $searchModel = new EmployeeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -67,12 +70,70 @@ class EmployeeController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->can("viewEmployee"))
+        if (!Yii::$app->user->can("viewEmployee"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionBarcode()
+    {
+        if (!Yii::$app->user->can("viewEmployee"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
+        $model = Employee::find()->where(['<>', 'status', '0'])->all();
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_UTF8,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER,
+            'defaultFontSize' => '20pt',
+            // your html content input
+            'content' => $this->renderPartial('barcode', ['model' => $model]),
+            'options' => [
+                // any mpdf options you wish to set
+            ],
+            'methods' => [
+                'SetTitle' => 'พนักงาน ขสมก.',
+                'SetSubject' => 'รายชื่อและรหัสพนักงาน ขสมก',
+                'SetHeader' => ['รายชื่อพนักงาน||Genarated: ' . date("r")],
+                'SetFooter' => ['|Page {PAGENO}|'],
+                'SetAuthor' => 'Kartik Visweswaran',
+                'SetCreator' => 'Kartik Visweswaran',
+                'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, Privacy, Policy, yii2-mpdf',
+            ]
+        ]);
+
+        $defaultConfig = (new ConfigVariables())->getDefaults();
+        $fontDirs = $defaultConfig['fontDir'];
+
+        $defaultFontConfig = (new FontVariables())->getDefaults();
+        $fontData = $defaultFontConfig['fontdata'];
+
+        $pdf->options['fontDir'] = array_merge($fontDirs, [
+            Yii::getAlias('@webroot') . '/fonts'
+        ]);
+
+
+
+        $pdf->options['fontdata'] = $fontData + [
+            'thsarabun' => [
+                'R' => 'THSarabun.ttf',
+            ]
+            
+        ];
+        //'default_font' => 'frutiger'
+
+        $pdf->options['defaultFont'] = 'thsarabun';
+        return $pdf->render();
     }
 
     /**
@@ -82,9 +143,9 @@ class EmployeeController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->can("createEmployee"))
+        if (!Yii::$app->user->can("createEmployee"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-            
+
         $model = new Employee();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -105,7 +166,7 @@ class EmployeeController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->can("editEmployee"))
+        if (!Yii::$app->user->can("editEmployee"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $model = $this->findModel($id);
@@ -128,12 +189,12 @@ class EmployeeController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->can("deleteEmployee"))
+        if (!Yii::$app->user->can("deleteEmployee"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
         $model = $this->findModel($id);
-$model->status = 0;
-$model->save();
+        $model->status = 0;
+        $model->save();
 
         return $this->redirect(['index']);
     }

@@ -40,12 +40,13 @@ class DistrictSearch extends District
      */
     public function search($params)
     {
-        $query = District::find();
+        $query = District::find()->where(['<>', 'status', '0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+'pagination' => [ 'pageSize' => 15 ],
         ]);
 
         $this->load($params);

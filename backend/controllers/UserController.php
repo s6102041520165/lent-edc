@@ -77,12 +77,10 @@ class UserController extends Controller
         ]);
     }
 
-    
+
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-$model->status = 0;
-$model->save();
+        $model = $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

@@ -34,7 +34,7 @@ $date2=date("yy-m-d");
                 <div class="col-lg-6">
                     <?= '<label class="control-label">เขต พกส.</label>'; ?>
                     <?php
-                    $data = ArrayHelper::map(District::find()->asArray()->all(), 'id', 'name');
+                    $data = ArrayHelper::map(District::find()->where(['<>','status','0'])->asArray()->all(), 'id', 'name');
                     echo Select2::widget([
                         'model' => $model,
                         'attribute' => 'district_id',
@@ -50,7 +50,7 @@ $date2=date("yy-m-d");
                 <div class="col-lg-6">
                     <?= '<label class="control-label">กอง</label>'; ?>
                     <?php
-                    $data = ArrayHelper::map(Division::find()->asArray()->all(), 'id', 'name');
+                    $data = ArrayHelper::map(Division::find()->where(['<>','status','0'])->asArray()->all(), 'id', 'name');
                     // $data = ArrayHelper::multisort($data, ['name'], [SORT_ASC]);
                     echo Select2::widget([
                         'model' => $model,

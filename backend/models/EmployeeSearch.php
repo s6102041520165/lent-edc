@@ -40,12 +40,13 @@ class EmployeeSearch extends Employee
      */
     public function search($params)
     {
-        $query = Employee::find();
+        $query = Employee::find()->where(['<>', 'status', '0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+'pagination' => [ 'pageSize' => 15 ],
         ]);
 
         $this->load($params);

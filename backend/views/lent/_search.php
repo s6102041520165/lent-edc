@@ -32,7 +32,7 @@ use rmrevin\yii\fontawesome\FA;
             <?php // $form->field($model, 'edc_id',['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) 
             ?>
             <?php
-            $data = ArrayHelper::map(Edc::find()->all(), 'id', 'serial_no');
+            $data = ArrayHelper::map(Edc::find()->where(['<>','status','0'])->all(), 'id', 'serial_no');
             // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
             echo '<label class="control-label">เครื่อง EDC</label>';
             echo Select2::widget([

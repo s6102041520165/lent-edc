@@ -40,12 +40,13 @@ class DivisionSearch extends Division
      */
     public function search($params)
     {
-        $query = Division::find();
+        $query = Division::find()->where(['<>', 'status', '0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+'pagination' => [ 'pageSize' => 15 ],
         ]);
 
         $this->load($params);
