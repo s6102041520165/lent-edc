@@ -106,9 +106,6 @@ class EmployeeController extends Controller
                 'SetSubject' => 'รายชื่อและรหัสพนักงาน ขสมก',
                 'SetHeader' => ['รายชื่อพนักงาน||Genarated: ' . date("r")],
                 'SetFooter' => ['|Page {PAGENO}|'],
-                'SetAuthor' => 'Kartik Visweswaran',
-                'SetCreator' => 'Kartik Visweswaran',
-                'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, Privacy, Policy, yii2-mpdf',
             ]
         ]);
 
