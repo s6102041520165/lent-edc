@@ -8,7 +8,7 @@
                 <img src="<?=Yii::getAlias('@web')?>/img/man.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p><?= Yii::$app->user->identity->username; ?></p>
+                <p><?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : "ไม่พบผู้ใช้"; ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>

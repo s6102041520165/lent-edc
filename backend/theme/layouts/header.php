@@ -24,7 +24,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= Yii::getAlias('@web') ?>/img/man-light.png" class="user-image" alt="User Image" />
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
+                        <span class="hidden-xs"><?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : "ไม่พบผู้ใช้"; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -32,7 +32,7 @@ use yii\helpers\Html;
                             <img src="<?= Yii::getAlias('@web') ?>/img/man-light.png" class="img-circle" alt="User Image" />
 
                             <p>
-                                <?= Yii::$app->user->identity->username; ?>
+                                <?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : "ไม่พบผู้ใช้"; ?>
                             </p>
                         </li>
                         <!-- Menu Body -->
