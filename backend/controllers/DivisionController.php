@@ -23,22 +23,22 @@ class DivisionController extends Controller
     {
         return [
             'access' => [
-                 'class' => AccessControl::className(),
-                 'rules' => [
-                     [
-                         'actions' => ['create', 'index','update','view','delete'],
-                         'allow' => true,
-                         'roles' => ['@'],
-                     ],
-                 ],
-             ],
-             'verbs' => [
-                 'class' => VerbFilter::className(),
-                 'actions' => [
-                     'delete' => ['post'],
-                 ],
-             ],
-         ];
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'index', 'update', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -47,7 +47,7 @@ class DivisionController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->can("viewDistrict"))
+        if (!Yii::$app->user->can("viewDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
 
         $searchModel = new DivisionSearch();
@@ -67,7 +67,7 @@ class DivisionController extends Controller
      */
     public function actionView($id)
     {
-        if(!Yii::$app->user->can("viewDistrict"))
+        if (!Yii::$app->user->can("viewDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
 
         return $this->render('view', [
@@ -82,7 +82,7 @@ class DivisionController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->can("createDistrict"))
+        if (!Yii::$app->user->can("createDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
 
         $model = new Division();
@@ -105,7 +105,7 @@ class DivisionController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->can("editDistrict"))
+        if (!Yii::$app->user->can("editDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
 
         $model = $this->findModel($id);
@@ -128,10 +128,12 @@ class DivisionController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->can("deleteDistrict"))
+        if (!Yii::$app->user->can("deleteDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
-            
-        $this->findModel($id)->delete();
+
+        $model = $this->findModel($id);
+        $model->status = 0;
+        $model->save();
 
         return $this->redirect(['index']);
     }

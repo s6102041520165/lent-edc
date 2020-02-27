@@ -16,7 +16,7 @@ class m200212_091319_create_edc_table extends Migration
             'id' => $this->primaryKey(),
             'serial_no' => $this->string(50),
             'import_date' => $this->date(),
-            'status' => $this->integer(),
+            'status' => $this->integer()->defaultValue(1),
             
             'district_id'=>$this->integer(),
             'division_id' => $this->integer(),

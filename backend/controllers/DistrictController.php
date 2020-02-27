@@ -131,7 +131,9 @@ class DistrictController extends Controller
         if(!Yii::$app->user->can("deleteDistrict"))
             throw new ForbiddenHttpException("ไม่มีสิทธิเข้าถึงเนื้อหา");
 
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+$model->status = 0;
+$model->save();
 
         return $this->redirect(['index']);
     }
