@@ -51,8 +51,8 @@ use rmrevin\yii\fontawesome\FA;
                     // $data = ArrayHelper::map(ContactGroups::find()->where(['group_status'=>'ACTIVE'])->asArray()->all(),'group_id', 'group_name');
                     echo $form->field($model, 'edc_id')->widget(Select2::className(), [
                         'data' => $data,
-                        'language' => 'th',
-                        'options' => ['placeholder' => 'กรุณาเลือกเขต พกส.'],
+                        'language' => 'en',
+                        'options' => ['placeholder' => 'เครื่อง EDC'],
                         'pluginOptions' => [
                             'allowClear' => true
                         ],

@@ -5,6 +5,7 @@ namespace backend\controllers;
 use app\models\Edc;
 use Yii;
 use app\models\Lent;
+use app\models\LentSave;
 use backend\models\LentSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -136,10 +137,12 @@ class LentController extends Controller
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
-        $model = new Lent();
+        $model = new LentSave();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->save())
+                return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -163,7 +166,7 @@ class LentController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
@@ -176,22 +179,23 @@ class LentController extends Controller
     {
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-            
+
         $modelReturn = new Lent();
 
         //$modelReturn = $this->findmodelReturn($id);
 
         if ($modelReturn->load(Yii::$app->request->post())) {
-            $searchmodelReturn = Lent::find()->where(['edc_id' => $modelReturn->edc_id, 'status' => 1])->one();
-            $id = $searchmodelReturn->id;
+            $searchModelReturn = Lent::findOne(['edc_id' => $modelReturn->edc_id, 'status' => 1]);
+            $id = $searchModelReturn->id;
             //var_dump($id);
 
-            $model = $this->findModel($id);
+            $model = $this->findReturn($id);
 
             $model->setAttribute('return_date', time());
             $model->setAttribute('status', 2);
+            //var_dump($model);
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
@@ -199,6 +203,17 @@ class LentController extends Controller
             'modelReturn' => $modelReturn,
         ]);
     }
+
+
+    /*public function validateInput($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+            }
+        }
+    }*/
 
     /**
      * Deletes an existing Lent model.
@@ -225,6 +240,15 @@ class LentController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
+    {
+        if (($model = LentSave::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findReturn($id)
     {
         if (($model = Lent::findOne($id)) !== null) {
             return $model;
