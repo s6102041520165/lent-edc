@@ -1,15 +1,15 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lent;
+use app\models\Division;
 
 /**
- * LentSearch represents the model behind the search form of `app\models\Lent`.
+ * DivisionSearch represents the model behind the search form of `app\models\Division`.
  */
-class LentSearch extends Lent
+class DivisionSearch extends Division
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class LentSearch extends Lent
     public function rules()
     {
         return [
-            [['id', 'employee_id', 'edc_id', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['return_date'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class LentSearch extends Lent
      */
     public function search($params)
     {
-        $query = Lent::find();
+        $query = Division::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,9 @@ class LentSearch extends Lent
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'employee_id' => $this->employee_id,
-            'edc_id' => $this->edc_id,
-            'status' => $this->status,
-            'return_date' => $this->return_date,
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
-            'updated_by' => $this->updated_by,
         ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

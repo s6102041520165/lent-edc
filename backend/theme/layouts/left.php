@@ -36,6 +36,7 @@
                     ['label' => 'เครื่อง EDC', 'icon' => 'credit-card', 'url' => ['/edc'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
                     ['label' => 'การยืมคืนเครื่อง EDC', 'icon' => 'list-ul', 'url' => ['/lent'], 'visible' => (Yii::$app->user->can("viewEdc")) ? true : false],
                     ['label' => 'เขต พกส.', 'icon' => 'map-marker', 'url' => ['/district'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
+                    ['label' => 'กอง', 'icon' => 'map-marker', 'url' => ['/division'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
                     ['label' => 'ผู้ใช้', 'icon' => 'users', 'url' => ['/user'], 'visible' => (Yii::$app->user->can("createUser")) ? true : false],
                     ['label' => 'สรุปข้อมูลยืมคืนเครื่อง', 'icon' => 'area-chart', 'url' => ['/lent/summary'], 'visible' => (Yii::$app->user->can("viewDistrict")) ? true : false],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],

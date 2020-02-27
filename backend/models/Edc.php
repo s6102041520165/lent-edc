@@ -39,10 +39,11 @@ class Edc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['status','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
+            [['district_id', 'division_id', 'status'], 'required', 'message' => '{attribute} ต้องไม่เป็นค่าว่าง'],
             [['import_date'], 'safe'],
-            [['status', 'district_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['status', 'district_id', 'division_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['serial_no'], 'string', 'max' => 50],
+            [['serial_no'], 'unique', 'message' => 'พบ {value} อยู่ในระบบแล้ว'],
             [['district_id'], 'exist', 'skipOnError' => true, 'targetClass' => District::className(), 'targetAttribute' => ['district_id' => 'id']],
         ];
     }
@@ -57,7 +58,8 @@ class Edc extends \yii\db\ActiveRecord
             'serial_no' => 'Serial No',
             'import_date' => 'วัน เดือน ปี ที่ได้มา',
             'status' => 'สภาพการใช้งาน',
-            'district_id' => 'เขต กพส.',
+            'district_id' => 'เขต พกส.',
+            'division_id' => 'กอง',
             'created_at' => 'เพิ่มข้อมูลเมื่อ',
             'created_by' => 'เพิ่มข้อมูลโดย',
             'updated_at' => 'แก้ไขข้อมูลเมื่อ',
@@ -92,6 +94,11 @@ class Edc extends \yii\db\ActiveRecord
     public function getDistrict()
     {
         return $this->hasOne(District::className(), ['id' => 'district_id']);
+    }
+
+    public function getDivision()
+    {
+        return $this->hasOne(Division::className(), ['id' => 'division_id']);
     }
 
     public function getCreator()

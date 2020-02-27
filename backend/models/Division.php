@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "district".
+ * This is the model class for table "division".
  *
  * @property int $id
  * @property int $name
@@ -13,14 +13,14 @@ use Yii;
  * @property Edc[] $edcs
  * @property Employee[] $employees
  */
-class District extends \yii\db\ActiveRecord
+class Division extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'district';
+        return 'division';
     }
 
     /**
@@ -41,7 +41,7 @@ class District extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัสอ้างอิง',
-            'name' => 'เขต พกส.',
+            'name' => 'กอง',
         ];
     }
 
@@ -52,7 +52,7 @@ class District extends \yii\db\ActiveRecord
      */
     public function getEdcs()
     {
-        return $this->hasMany(Edc::className(), ['district_id' => 'id']);
+        return $this->hasMany(Edc::className(), ['division_id' => 'id']);
     }
 
     /**
@@ -62,6 +62,6 @@ class District extends \yii\db\ActiveRecord
      */
     public function getEmployees()
     {
-        return $this->hasMany(Employee::className(), ['district_id' => 'id']);
+        return $this->hasMany(Employee::className(), ['division_id' => 'id']);
     }
 }

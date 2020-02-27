@@ -45,8 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ],
                     [
-                        'label' => 'เขต กพส.',
                         'attribute' => 'district.name'
+                    ],
+                    [
+                        'attribute' => 'division.name'
                     ],
                     // ส่วนแสดงอัพเดทแก้ไขเมื่อ
                     'created_at:datetime',

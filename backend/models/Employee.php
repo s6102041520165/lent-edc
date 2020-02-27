@@ -38,11 +38,9 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['rfid','required','message'=>'กรุณากรอกข้อมูล {attribute}'],
-            [['created_at','district_id', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['rfid'], 'string', 'max' => 20],
+            [['district_id', 'division_id'], 'required', 'message' => '{attribute} ต้องไม่เป็นค่าว่าง'],
+            [['created_at', 'district_id', 'division_id', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['firstname', 'lastname', 'line'], 'string', 'max' => 50],
-            [['rfid'], 'unique','message' => '{attribute} ไม่สามารถเพิ่มได้ เนื่องจากพบ {value} ในฐานข้อมูล'],
             [['district_id'], 'exist', 'skipOnError' => true, 'targetClass' => District::className(), 'targetAttribute' => ['district_id' => 'id']],
         ];
     }
@@ -54,11 +52,10 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'รหัส',
-            'rfid' => 'RFID',
             'firstname' => 'ชื่อ',
             'lastname' => 'นามสกุล',
             'line' => 'สายการเดินรถ',
-            'district_id' => 'เขต กพส.',
+            'district_id' => 'เขต พกส.',
             'created_at' => 'เพิ่มเมื่อ',
             'created_by' => 'เพิ่มโดย',
             'updated_at' => 'แก้ไขเมื่อ',

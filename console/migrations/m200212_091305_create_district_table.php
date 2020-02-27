@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%district}}`.
  */
-class m200212_091310_create_district_table extends Migration
+class m200212_091305_create_district_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,8 @@ class m200212_091310_create_district_table extends Migration
     {
         $this->createTable('{{%district}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(255)
+            'name' => $this->string(100)->notNull(),
+            //'name' => $this->string(255)
         ]);
     }
 

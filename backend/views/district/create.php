@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\District */
 
-$this->title = 'เพิ่มเขต กพส.';
+$this->title = 'เพิ่มเขต พกส.';
 $this->params['breadcrumbs'][] = ['label' => 'Districts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

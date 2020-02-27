@@ -35,7 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    ['label' => 'วันที่ยืม', 'attribute' => 'lent_date']
+                    //['label' => 'วันที่ยืม', 'attribute' => 'lent_date'],
+                    'return_date:date',
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($data) {
+                            if ($data->status == 1) {
+                                return 'กำลังยืม';
+                            } else if ($data->status == 2) {
+                                return 'คืนแล้ว';
+                            }
+                        }
+                    ],
+                    ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
                 ],
                 'exportConfig' => [
                     ExportMenu::FORMAT_TEXT => false,
@@ -44,12 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ExportMenu::FORMAT_PDF => [
                         'pdfConfig' => [
                             'methods' => [
-                                'SetTitle' => 'Grid Export - Krajee.com',
-                                'SetSubject' => 'Generating PDF files via yii2-export extension has never been easy',
-                                'SetHeader' => ['Krajee Library Export||Generated On: ' . date("r")],
-                                'SetFooter' => ['|Page {PAGENO}|'],
-                                'SetAuthor' => 'Kartik Visweswaran',
-                                'SetCreator' => 'Kartik Visweswaran',
+                                'SetTitle' => 'ประวัติการยืมคืนเครื่อง EDC',
+                                'SetSubject' => 'ประวัติการยืมคืนเครื่อง EDC ของ ขสมก.',
+                                'SetHeader' => ['Export||Generated On: ' . date("r")],
+                                'SetFooter' => ['|หน้า {PAGENO}|'],
+                                'SetAuthor' => 'Tar and Petch',
+                                'SetCreator' => 'Tar and Petch',
                                 'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, GridView, Grid, yii2-grid, yii2-mpdf, yii2-export',
                             ]
                         ]
@@ -68,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     // 'id',
-                    'lent_date:date',
+                    'created_at:date',
                     // ชื่อพนักงาน ยืมคืน
                     [
                         'label' => 'ชื่อจริง - นามสกุล',

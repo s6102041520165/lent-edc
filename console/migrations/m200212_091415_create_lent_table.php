@@ -14,11 +14,10 @@ class m200212_091415_create_lent_table extends Migration
     {
         $this->createTable('{{%lent}}', [
             'id' => $this->primaryKey(),
-            'lent_date' => $this->date(),
             'employee_id' => $this->integer(),
             'edc_id' => $this->integer(),
-            'status' => $this->integer(),
-            'return_date' => $this->date(),
+            'status' => $this->integer()->defaultValue(1),
+            'return_date' => $this->integer(),
             
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),

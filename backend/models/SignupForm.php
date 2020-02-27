@@ -52,7 +52,8 @@ class SignupForm extends Model
             'status' => 'สถานะ',
             'email' => 'อีเมล',
             'created_at' => 'เพิ่มเมื่อ',
-            'updated_at' => 'แก้ไขเมื่อ'
+            'updated_at' => 'แก้ไขเมื่อ',
+            'role' => 'สิทธิผู้ใช้'
         ];
     }
 

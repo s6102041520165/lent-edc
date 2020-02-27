@@ -46,21 +46,13 @@ use rmrevin\yii\fontawesome\FA;
             ]);
             ?>
         </div>
-        <div class="col-lg-6">
-            <?= $form->field($model, 'lent_date')->widget(\yii\jui\DatePicker::classname(), [
-                'language' => 'th',
-                'dateFormat' => 'yyyy-MM-dd',
-                'options' => [
-                    'class' => 'form-control'
-                ]
-            ]) ?>
-        </div>
+        
         <div class="col-lg-6">
             <?php // $form->field($model, 'employee_id') 
             ?>
             <?php
                 $data = ArrayHelper::map(Employee::find()->all(), 'id', function($dumb){
-                    return $dumb->rfid."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
+                    return $dumb->id."--". $dumb->firstname. " " . $dumb->lastname."--".$dumb->line;
                 });
                 echo '<label class="control-label">พนักงาน</label>';
                 echo Select2::widget([
