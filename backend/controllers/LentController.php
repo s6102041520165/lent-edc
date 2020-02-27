@@ -28,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary'],
+                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary', 'return'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -66,7 +66,7 @@ class LentController extends Controller
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
 
-            // จำนวนที่ยืม
+        // จำนวนที่ยืม
         $modelEDC = (new \yii\db\Query())->from('edc')->where('status=1');
         $sumEDC = $modelEDC->count('*');
 
@@ -76,7 +76,7 @@ class LentController extends Controller
         // จำนวนพนักงาน
         $employee = (new \yii\db\Query())->from('employee');
         $total_employee = $employee->count('*');
-        
+
         // จำนวนเครื่อง EDC
         $modelEDC = (new \yii\db\Query())->from('edc')->where('status=2');
         $total_Edc_fix = $modelEDC->count('*'); //จำนวนเครื่องที่ส่งซ่อม
@@ -99,19 +99,16 @@ class LentController extends Controller
             'total_employee' => $total_employee,
             'total_fix' => $total_Edc_fix,
             'total_rent' => $total_rent,
-            'total_district'=> $total_district,
+            'total_district' => $total_district,
             'total_edc' => $total_edc
         ]);
     }
 
-    public function dashboardEmployee(){
-        if(!Yii::$app->user->can("lentEdc"))
+    /*   public function dashboardEmployee()
+    {
+        if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
-        
-        
-
-        
-    }
+    } */
 
     /**
      * Displays a single Lent model.
@@ -165,11 +162,6 @@ class LentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $date = null;
-            if ($model->status == 2) {
-                $date = date("Y-m-d");
-                $model->setAttribute('return_date',$date);
-            }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -177,6 +169,34 @@ class LentController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionReturn()
+    {
+        if (!Yii::$app->user->can("lentEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+            
+        $modelReturn = new Lent();
+
+        //$modelReturn = $this->findmodelReturn($id);
+
+        if ($modelReturn->load(Yii::$app->request->post())) {
+            $searchmodelReturn = Lent::find()->where(['edc_id' => $modelReturn->edc_id, 'status' => 1])->one();
+            $id = $searchmodelReturn->id;
+            //var_dump($id);
+
+            $model = $this->findModel($id);
+
+            $model->setAttribute('return_date', time());
+            $model->setAttribute('status', 2);
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        return $this->render('return', [
+            'modelReturn' => $modelReturn,
         ]);
     }
 
