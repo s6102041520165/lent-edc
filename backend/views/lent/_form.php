@@ -78,16 +78,5 @@ use rmrevin\yii\fontawesome\FA;
     <div class="form-group">
         <?= Html::submitButton(FA::icon('save') . ' บันทึกข้อมูล', ['class' => 'btn btn-success']) ?>
     </div>
-                        <button onclick="buttonClicl()">123456789</button>
     <?php ActiveForm::end(); ?>
-    <script>
-        function buttonClicl(){
-            $(document).on('focus', '.select2', function() {
-                var elSelect = $(this).siblings('select');
-                if (elSelect.is('[disabled]')==false) {
-                    elSelect.select2('open');
-                }
-            });
-        }
-    </script>
 </div>

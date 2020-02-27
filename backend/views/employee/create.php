@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="employee-create">
     <div class="panel">
         <div class="panel-body">
-            <h1><?= Html::encode($this->title) ?></h1>
 
             <?= $this->render('_form', [
                 'model' => $model,

@@ -94,6 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // status การยืม
                     [
                         'label' => 'สถานะการยืมคืน',
+                        'attribute' => 'status',
                         'value' => function ($data) {
                             if ($data->status == 1) {
                                 return 'กำลังยืม';

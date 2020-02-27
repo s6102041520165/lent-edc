@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lent-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <div class="panel">
         <div class="panel-body">
             <?= $this->render('_form', [
