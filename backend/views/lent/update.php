@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = Yii::$app->formatter->format($model->updated_at, 'datetime');
 $this->params['breadcrumbs'][] = ['label' => 'ระบบเบิกจ่ายเครื่อง EDC', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->created_at]];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="lent-update">
