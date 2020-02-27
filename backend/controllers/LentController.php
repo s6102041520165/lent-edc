@@ -28,7 +28,7 @@ class LentController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary'],
+                        'actions' => ['create', 'index', 'update', 'delete', 'view', 'summary', 'return'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -104,7 +104,7 @@ class LentController extends Controller
         ]);
     }
 
-  /*   public function dashboardEmployee()
+    /*   public function dashboardEmployee()
     {
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
@@ -162,16 +162,36 @@ class LentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $date = null;
-            if ($model->status == 2) {
-                $model->setAttribute('return_date', time());
-            }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
 
         return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionReturn()
+    {
+        if (!Yii::$app->user->can("lentEdc"))
+            throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+
+        $model = new Lent();
+
+        //$model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $date = null;
+            if ($model->status == 2) {
+                $model->setAttribute('return_date', $model->created_at);
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        return $this->render('return', [
             'model' => $model,
         ]);
     }
