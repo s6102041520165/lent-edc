@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <nav class="navbar navbar-static-top" role="navigation">
 
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigationtest</span>
+            <span class="sr-only">Toggle navigation</span>
         </a>
 
         <div class="navbar-custom-menu">
