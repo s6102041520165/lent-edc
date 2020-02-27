@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
             <p>
                 <?= Html::a(FA::icon('plus') . ' ยืมเครื่อง EDC', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(FA::icon('undo') . ' คืนเครื่อง EDC', ['return'], ['class' => 'btn btn-warning']) ?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -82,13 +83,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'id',
                     'created_at:date',
                     // ชื่อพนักงาน ยืมคืน
-                    /*[
+                    [
                         'label' => 'ชื่อจริง - นามสกุล',
                         'attribute' => 'employee_id',
                         'value' => function ($data) {
                             return $data->employee['firstname'] . " " . $data->employee['lastname'];
                         }
-                    ],*/
+                    ],
                     ['label' => 'เครื่อง EDC', 'attribute' => 'edc.serial_no'],
                     // status การยืม
                     [

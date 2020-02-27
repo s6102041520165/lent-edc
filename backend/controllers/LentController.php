@@ -176,6 +176,7 @@ class LentController extends Controller
     {
         if (!Yii::$app->user->can("lentEdc"))
             throw new ForbiddenHttpException("ไม่มีสิทธิ์เข้าถึงข้อมูล");
+            
         $modelReturn = new Lent();
 
         //$modelReturn = $this->findmodelReturn($id);
