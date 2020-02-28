@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     // 'id',
-                    'created_at:relativeTime',
+                    'created_at:datetime',
                     // ชื่อพนักงาน ยืมคืน
                     [
                         'label' => 'ชื่อจริง - นามสกุล',
