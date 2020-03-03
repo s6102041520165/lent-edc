@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Employee */
 
 $this->title = $model->firstname . " " . $model->lastname;
-$this->params['breadcrumbs'][] = ['label' => 'Employees', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'พนักงาน', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'lastname',
                     'line',
                     'district.name',
+                    'division.name',
                     // ส่วนแสดงอัพเดทแก้ไขเมื่อ
                     'created_at:date',
                     [

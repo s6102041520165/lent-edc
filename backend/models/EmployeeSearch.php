@@ -40,16 +40,26 @@ class EmployeeSearch extends Employee
      */
     public function search($params)
     {
-        $query = Employee::find()->where(['<>', 'status', '0']);
+        $query = Employee::find()->joinWith(['district','division'])->where(['<>', 'employee.status', '0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-'pagination' => [ 'pageSize' => 15 ],
+            'pagination' => ['pageSize' => 15],
         ]);
 
         $this->load($params);
+
+        $dataProvider->sort->attributes['district_id'] = [
+            'asc' => ['district.name' => 'SORT_ASC'],
+            'desc' => ['district.name' => 'SORT_DESC'],
+        ];
+
+        $dataProvider->sort->attributes['division_id'] = [
+            'asc' => ['division.name' => 'SORT_ASC'],
+            'desc' => ['division.name' => 'SORT_DESC'],
+        ];
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -60,15 +70,15 @@ class EmployeeSearch extends Employee
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lastname' => $this->lastname,
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
             'updated_at' => $this->updated_at,
             'updated_by' => $this->updated_by,
+            'line' => $this->line,
         ]);
 
         $query->andFilterWhere(['like', 'firstname', $this->firstname])
-            ->andFilterWhere(['like', 'line', $this->line]);
+            ->andFilterWhere(['lastname' => $this->lastname]);
 
         return $dataProvider;
     }

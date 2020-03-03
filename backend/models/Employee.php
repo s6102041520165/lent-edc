@@ -56,6 +56,7 @@ class Employee extends \yii\db\ActiveRecord
             'lastname' => 'นามสกุล',
             'line' => 'สายการเดินรถ',
             'district_id' => 'เขต พกส.',
+            'division_id' => 'กอง',
             'created_at' => 'เพิ่มเมื่อ',
             'created_by' => 'เพิ่มโดย',
             'updated_at' => 'แก้ไขเมื่อ',
@@ -80,6 +81,11 @@ class Employee extends \yii\db\ActiveRecord
     public function getDistrict()
     {
         return $this->hasOne(District::className(), ['id' => 'district_id']);
+    }
+
+    public function getDivision()
+    {
+        return $this->hasOne(Division::className(), ['id' => 'division_id']);
     }
 
     public function getLents()

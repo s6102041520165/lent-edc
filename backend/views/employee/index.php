@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel">
         <div class="panel-body">
             <p>
-                <?= Html::a(FA::icon('user-plus').' เพิ่มพนักงาน', ['create'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a(FA::icon('download').' ดาวน์โหลดบาร์โค๊ด', ['barcode'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(FA::icon('user-plus') . ' เพิ่มพนักงาน', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(FA::icon('download') . ' ดาวน์โหลดบาร์โค๊ด', ['barcode'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     // 'id',
-                    
+
                     [
                         'label' => 'ชื่อจริง - นามสกุล',
                         'attribute' => 'firstname',
@@ -90,7 +90,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'line',
-                    'district.name',
+                    [
+                        'attribute' => 'district_id',
+                        'value' => 'district.name'
+                    ],
+                    [
+                        'attribute' => 'division_id',
+                        'value' => 'division.name'
+                    ],
                     'created_at:relativeTime',
                     //'created_by',
                     //'updated_at',
@@ -98,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => (Yii::$app->user->can('deleteEmployee')) ? "{view} {update}" : "{view} {update} {delete}",
+                        'template' => (!Yii::$app->user->can('deleteEmployee')) ? "{view} {update}" : "{view} {update} {delete}",
                     ],
                 ],
             ]); ?>
